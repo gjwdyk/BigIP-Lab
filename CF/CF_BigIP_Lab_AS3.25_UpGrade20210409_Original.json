@@ -111,7 +111,7 @@
     },
     "AS3URL" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3-LTM-SSLoL-AVR-NOutB/AS3_LTM_SSLoL_AVR_NOutB.json",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/AS3_LTM_SSLoL_AVR_NOutB.json",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL for the AS3 declaration JSON file to be deployed. Input *none* (without the *) to deploy without a service configuration."
     },

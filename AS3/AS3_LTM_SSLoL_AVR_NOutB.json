@@ -1,0 +1,714 @@
+{
+    "Tenant_Class": {
+        "class": "Tenant",
+        "defaultRouteDomain": 0,
+        "Application_Class": {
+            "class": "Application",
+            "template": "https",
+            "serviceMain": {
+                "class": "Service_HTTPS",
+                "allowVlans": [
+                    "external"
+                ],
+                "virtualAddresses": [
+                    "10.1.10.241"
+                ],
+                "serverTLS": "ServiceHTTPS_TLSServer",
+                "pool": "ServerHTTP_Pool",
+                "profileAnalytics": {
+                    "use": "HTTP_Analytics_Profile"
+                },
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "virtualPort": 443,
+                "redirect80": true,
+                "persistenceMethods": [
+                    "cookie"
+                ],
+                "profileHTTP": "basic",
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "ServerHTTP_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.252"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "SSH_Service_TCP": {
+                "class": "Service_TCP",
+                "virtualAddresses": [
+                    "10.1.10.241"
+                ],
+                "virtualPort": 22,
+                "allowVlans": [
+                    "external"
+                ],
+                "pool": "ServerSSH_Pool",
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "persistenceMethods": [
+                    "source-address"
+                ],
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "ServerSSH_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "TCPHalfOpen_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 22,
+                        "serverAddresses": [
+                            "10.1.20.252"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "VNC_Service_TCP": {
+                "class": "Service_TCP",
+                "virtualAddresses": [
+                    "10.1.10.241"
+                ],
+                "virtualPort": 5900,
+                "allowVlans": [
+                    "external"
+                ],
+                "pool": "ServerVNC_Pool",
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "persistenceMethods": [
+                    "source-address"
+                ],
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "ServerVNC_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "TCPHalfOpen_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 5900,
+                        "serverAddresses": [
+                            "10.1.20.252"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "StaticWeb_Service_HTTPS": {
+                "class": "Service_HTTPS",
+                "allowVlans": [
+                    "external"
+                ],
+                "virtualAddresses": [
+                    "10.1.10.240"
+                ],
+                "serverTLS": "ServiceHTTPS_TLSServer",
+                "persistenceMethods": [],
+                "pool": "StaticWebServers_Pool",
+                "profileAnalytics": {
+                    "use": "HTTP_Analytics_Profile"
+                },
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "virtualPort": 443,
+                "redirect80": true,
+                "profileHTTP": "basic",
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "StaticWebServers_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.11",
+                            "10.1.20.12",
+                            "10.1.20.13"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "DVWA_Service_HTTPS": {
+                "class": "Service_HTTPS",
+                "allowVlans": [
+                    "external"
+                ],
+                "virtualAddresses": [
+                    "10.1.10.242"
+                ],
+                "serverTLS": "ServiceHTTPS_TLSServer",
+                "pool": "DVWA_Pool",
+                "profileAnalytics": {
+                    "use": "HTTP_Analytics_Profile"
+                },
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "virtualPort": 443,
+                "redirect80": true,
+                "persistenceMethods": [
+                    "cookie"
+                ],
+                "profileHTTP": "basic",
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "DVWA_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.17"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "Hackazon_Service_HTTPS": {
+                "class": "Service_HTTPS",
+                "allowVlans": [
+                    "external"
+                ],
+                "virtualAddresses": [
+                    "10.1.10.243"
+                ],
+                "serverTLS": "ServiceHTTPS_TLSServer",
+                "pool": "Hackazon_Pool",
+                "profileAnalytics": {
+                    "use": "HTTP_Analytics_Profile"
+                },
+                "profileAnalyticsTcp": {
+                    "use": "TCP_Analytics_Profile"
+                },
+                "virtualPort": 443,
+                "redirect80": true,
+                "persistenceMethods": [
+                    "cookie"
+                ],
+                "profileHTTP": "basic",
+                "virtualType": "standard",
+                "layer4": "tcp",
+                "profileTCP": "normal",
+                "shareAddresses": false,
+                "enable": true,
+                "maxConnections": 0,
+                "snat": "auto",
+                "addressStatus": true,
+                "mirroring": "none",
+                "lastHop": "default",
+                "translateClientPort": false,
+                "translateServerAddress": true,
+                "translateServerPort": true,
+                "nat64Enabled": false
+            },
+            "Hackazon_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.20"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "ActiveDirectory_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "TCPHalfOpen_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 88,
+                        "serverAddresses": [
+                            "10.1.20.251"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "LoraxWebServer_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.32"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "LoraxStaticWeb_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "HTTP_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 80,
+                        "serverAddresses": [
+                            "10.1.20.41",
+                            "10.1.20.42",
+                            "10.1.20.43",
+                            "10.1.20.44"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "InternetGateway_Pool": {
+                "class": "Pool",
+                "monitors": [
+                    {
+                        "use": "ICMP_Gateway_8888_Monitor"
+                    },
+                    {
+                        "use": "ICMP_Gateway_8844_Monitor"
+                    }
+                ],
+                "members": [
+                    {
+                        "servicePort": 0,
+                        "serverAddresses": [
+                            "10.1.10.1"
+                        ],
+                        "enable": true,
+                        "connectionLimit": 0,
+                        "rateLimit": -1,
+                        "dynamicRatio": 1,
+                        "ratio": 1,
+                        "priorityGroup": 0,
+                        "adminState": "enable",
+                        "addressDiscovery": "static",
+                        "shareNodes": false
+                    }
+                ],
+                "loadBalancingMode": "round-robin",
+                "minimumMembersActive": 1,
+                "reselectTries": 0,
+                "serviceDownAction": "none",
+                "slowRampTime": 10,
+                "minimumMonitors": 1
+            },
+            "ServiceHTTPS_TLSServer": {
+                "class": "TLS_Server",
+                "label": "TLS Profile for Clients to Connects to Big-IP",
+                "certificates": [
+                    {
+                        "certificate": "TLSServer_Certificate"
+                    }
+                ],
+                "requireSNI": false,
+                "authenticationMode": "ignore",
+                "authenticationFrequency": "one-time",
+                "allowExpiredCRL": false,
+                "cacheCertificateEnabled": false,
+                "c3dOCSPUnknownStatusAction": "drop",
+                "c3dEnabled": false,
+                "forwardProxyEnabled": false,
+                "forwardProxyBypassEnabled": false,
+                "renegotiationEnabled": true,
+                "staplerOCSPEnabled": false,
+                "insertEmptyFragmentsEnabled": false,
+                "singleUseDhEnabled": false,
+                "tls1_3Enabled": false,
+                "tls1_2Enabled": true,
+                "tls1_1Enabled": true,
+                "tls1_0Enabled": true,
+                "ciphers": "DEFAULT"
+            },
+            "TLSServer_Certificate": {
+                "class": "Certificate",
+                "certificate": {
+                    "bigip": "/Common/HC-Imported-SSL-Certificate"
+                },
+                "privateKey": {
+                    "bigip": "/Common/HC-Imported-SSL-Key"
+                }
+            },
+            "HTTP_Monitor": {
+                "class": "Monitor",
+                "monitorType": "http",
+                "targetAddress": "",
+                "interval": 5,
+                "upInterval": 0,
+                "timeUntilUp": 0,
+                "timeout": 16,
+                "targetPort": 0,
+                "send": "HEAD / HTTP/1.0\\r\\n\\r\\n",
+                "receive": "HTTP/1.",
+                "receiveDown": "",
+                "reverse": false,
+                "transparent": false,
+                "dscp": 0,
+                "adaptive": false,
+                "adaptiveDivergenceType": "relative",
+                "adaptiveDivergenceMilliseconds": 500,
+                "adaptiveDivergencePercentage": 100,
+                "adaptiveLimitMilliseconds": 1000,
+                "adaptiveWindow": 180
+            },
+            "TCPHalfOpen_Monitor": {
+                "class": "Monitor",
+                "monitorType": "tcp-half-open",
+                "targetAddress": "",
+                "interval": 5,
+                "upInterval": 0,
+                "timeUntilUp": 0,
+                "timeout": 16,
+                "targetPort": 0,
+                "transparent": false
+            },
+            "ICMP_Gateway_8888_Monitor": {
+                "class": "Monitor",
+                "monitorType": "icmp",
+                "transparent": true,
+                "targetAddress": "8.8.8.8",
+                "interval": 5,
+                "upInterval": 0,
+                "timeUntilUp": 0,
+                "timeout": 16,
+                "adaptive": false,
+                "adaptiveDivergenceType": "relative",
+                "adaptiveDivergenceMilliseconds": 500,
+                "adaptiveDivergencePercentage": 100,
+                "adaptiveLimitMilliseconds": 1000,
+                "adaptiveWindow": 180
+            },
+            "ICMP_Gateway_8844_Monitor": {
+                "class": "Monitor",
+                "monitorType": "icmp",
+                "transparent": true,
+                "targetAddress": "8.8.4.4",
+                "interval": 5,
+                "upInterval": 0,
+                "timeUntilUp": 0,
+                "timeout": 16,
+                "adaptive": false,
+                "adaptiveDivergenceType": "relative",
+                "adaptiveDivergenceMilliseconds": 500,
+                "adaptiveDivergencePercentage": 100,
+                "adaptiveLimitMilliseconds": 1000,
+                "adaptiveWindow": 180
+            },
+            "HTTP_Analytics_Profile": {
+                "class": "Analytics_Profile",
+                "remark": "HTTP_Analytics_Profile_Remark",
+                "label": "HTTP_Analytics_Profile_Label",
+                "capturedTrafficInternalLogging": true,
+                "collectedStatsInternalLogging": true,
+                "collectClientSideStatistics": true,
+                "collectGeo": true,
+                "collectIp": true,
+                "collectMaxTpsAndThroughput": true,
+                "collectMethod": true,
+                "collectOsAndBrowser": true,
+                "collectPageLoadTime": true,
+                "collectResponseCode": true,
+                "collectSubnet": true,
+                "collectUrl": true,
+                "collectUserAgent": true,
+                "collectUserSession": true,
+                "publishIruleStatistics": true,
+                "sessionCookieSecurity": "always-secure",
+                "sessionTimeoutMinutes": 10,
+                "captureFilter": {
+                    "capturedProtocols": "all",
+                    "capturedReadyForJsInjection": "disabled",
+                    "dosActivity": "any",
+                    "requestCapturedParts": "all",
+                    "responseCapturedParts": "all",
+                    "virtualServers": [],
+                    "nodeAddresses": [],
+                    "responseCodes": [],
+                    "methods": [],
+                    "urlFilterType": "all",
+                    "urlPathPrefixes": [],
+                    "userAgentSubstrings": [],
+                    "clientIps": [],
+                    "requestContentFilterSearchPart": "none",
+                    "responseContentFilterSearchPart": "none"
+                },
+                "collectedStatsExternalLogging": false,
+                "capturedTrafficExternalLogging": false,
+                "notificationBySyslog": false,
+                "notificationBySnmp": false,
+                "notificationByEmail": false
+            },
+            "TCP_Analytics_Profile": {
+                "class": "Analytics_TCP_Profile",
+                "remark": "TCP_Analytics_Profile_Remark",
+                "label": "TCP_Analytics_Profile_Label",
+                "collectedStatsInternalLogging": true,
+                "collectCity": true,
+                "collectContinent": true,
+                "collectCountry": true,
+                "collectPostCode": true,
+                "collectRegion": true,
+                "collectedByClientSide": true,
+                "collectedByServerSide": true,
+                "collectNexthop": true,
+                "collectRemoteHostIp": true,
+                "collectRemoteHostSubnet": true,
+                "collectedStatsExternalLogging": false
+            },
+            "enable": true
+        },
+        "enable": true,
+        "optimisticLockKey": ""
+    },
+    "class": "ADC",
+    "schemaVersion": "3.20.0",
+    "id": "Sample-LTM-Declaration-for-LAMPv7",
+    "label": "Sample LTM Declaration for LAMPv7",
+    "remark": "Simple HTTP Virtual Servers with Round Robin Pool",
+    "updateMode": "selective",
+    "controls": {
+        "archiveTimestamp": "2020-06-04T13:07:53.714Z",
+        "class": "Controls",
+        "logLevel": "error",
+        "trace": false,
+        "traceResponse": false
+    }
+}
