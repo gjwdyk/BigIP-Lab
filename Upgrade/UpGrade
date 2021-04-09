@@ -62,8 +62,8 @@ printf "`cat /config/lidsa/TemporaryLidsa`" > /config/lidsa/LoremIpsumDolorSitAm
 
 printf "$UpGradeVolume_Value" > "$UpGradeVolume_File"
 "/config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/waitForMcp.sh"
-echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
-sleep $UpGrade_ShortWait_Period
+# echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
+# sleep $UpGrade_ShortWait_Period
 if [ "$DEBUG" == "ON" ] ; then
  echo "Value of UpGradeVolume_Value : $UpGradeVolume_Value"
  echo "cat $UpGradeVolume_File :"
@@ -80,14 +80,14 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
  echo "`date +%Y%m%d%H%M%S` Unit had been UpGraded ."
 
  if [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
-  echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
-  sleep $UpGrade_ShortWait_Period
+  # echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
+  # sleep $UpGrade_ShortWait_Period
   /bin/sudo /bin/bash /config/lidsa/BigIPSendMailLidsa ReLicense_On_UpGrade_Procedure '' 'ReLicense on Upgrade'
  else
   echo "`date +%Y%m%d%H%M%S` Value of $UpGradeImageName_File : `cat $UpGradeImageName_File` does NOT match Regular Expression ."
  fi
- echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
- sleep $UpGrade_ShortWait_Period
+ # echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
+ # sleep $UpGrade_ShortWait_Period
  echo "`date +%Y%m%d%H%M%S` Custom TMSH Configuration After UpGrade ."
  declare -a tmsh=()
  tmsh+=(
@@ -129,22 +129,23 @@ else
   mv /shared/images/UpgradeImage.iso /shared/images/`cat $UpGradeImageName_File`
   mv /shared/images/UpgradeImage.iso.md5 /shared/images/`cat $UpGradeImageName_File`.md5
   cd /shared/images/
+  echo "`date +%Y%m%d%H%M%S` Checking Image File Integrity ."
   md5sum --check `cat $UpGradeImageName_File`.md5 > /config/MD5CheckSumResult
   if ( cat /config/MD5CheckSumResult | grep `cat $UpGradeImageName_File` | grep "OK" ); then
-   echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
-   sleep $UpGrade_ShortWait_Period
+   # echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
+   # sleep $UpGrade_ShortWait_Period
    tmsh install /sys software image `cat $UpGradeImageName_File` volume `cat $UpGradeVolume_File` create-volume
    tmsh show sys software > /config/MonitorUpgradeVolumeInstallation
    while ( ! ( cat /config/MonitorUpgradeVolumeInstallation | grep `cat $UpGradeVolume_File` | grep "complete" ) ); do
-    # echo "`date +%Y%m%d%H%M%S` `cat /config/MonitorUpgradeVolumeInstallation | grep \"\`cat $UpGradeVolume_File\`\"`"
+    echo "`date +%Y%m%d%H%M%S` `cat /config/MonitorUpgradeVolumeInstallation`"
     echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_LongWait_Period ."
     sleep $UpGrade_LongWait_Period
     tmsh show sys software > /config/MonitorUpgradeVolumeInstallation
    done
    if ( cat /config/MonitorUpgradeVolumeInstallation | grep `cat $UpGradeVolume_File` | grep "complete" ); then
     sync
-    echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
-    sleep $UpGrade_ShortWait_Period
+    # echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_ShortWait_Period ."
+    # sleep $UpGrade_ShortWait_Period
     tmsh reboot volume `cat $UpGradeVolume_File`
    fi
   else
