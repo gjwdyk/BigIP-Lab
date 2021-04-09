@@ -141,6 +141,7 @@ else
     echo "`date +%Y%m%d%H%M%S` Installing Software Image File. Wait for $UpGrade_LongWait_Period ."
     sleep $UpGrade_LongWait_Period
     tmsh show sys software > /config/MonitorUpgradeVolumeInstallation
+    sync
    done
    if ( cat /config/MonitorUpgradeVolumeInstallation | grep `cat $UpGradeVolume_File` | grep "complete" ); then
     sync
