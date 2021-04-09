@@ -136,7 +136,7 @@ else
    tmsh install /sys software image `cat $UpGradeImageName_File` volume `cat $UpGradeVolume_File` create-volume
    tmsh show sys software > /config/MonitorUpgradeVolumeInstallation
    while ( ! ( cat /config/MonitorUpgradeVolumeInstallation | grep `cat $UpGradeVolume_File` | grep "complete" ) ); do
-    echo "`date +%Y%m%d%H%M%S` `cat /config/MonitorUpgradeVolumeInstallation | grep \`cat $UpGradeVolume_File\``"
+    echo "`date +%Y%m%d%H%M%S` `cat /config/MonitorUpgradeVolumeInstallation | grep \"\`cat $UpGradeVolume_File\`\"`"
     echo "`date +%Y%m%d%H%M%S` Sleep for $UpGrade_LongWait_Period ."
     sleep $UpGrade_LongWait_Period
     tmsh show sys software > /config/MonitorUpgradeVolumeInstallation
