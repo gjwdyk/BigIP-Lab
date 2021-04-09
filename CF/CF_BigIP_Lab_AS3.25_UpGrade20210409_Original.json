@@ -99,19 +99,19 @@
     },
     "BigIPTrafficTLSKey" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/Certificates/aadc.link.rsa.key",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Certificates/aadc.link.rsa.key",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL of the Private Key used to create the below TLS Certificate. This CloudFormation template requires the TLS Private Key and Certificate (i.e. Mandatory Input). If the Private Key is located at AWS S3, ensure that this CloudFormation template can read the file. If the Private Key is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file)."
     },
     "BigIPTrafficTLSCertificate" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/Certificates/aadc.link.rsa.crt",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Certificates/aadc.link.rsa.crt",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL of the TLS Certificate which Big-IP will use to encrypt or decrypt the requests and responses between users and servers. This CloudFormation template requires the TLS Private Key and Certificate (i.e. Mandatory Input). If the Private Key is located at AWS S3, ensure that this CloudFormation template can read the file. If the Private Key is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file)."
     },
     "AS3URL" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/AS3-LTM-SSLoL-AVR-NOutB/AS3_LTM_SSLoL_AVR_NOutB.json",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3-LTM-SSLoL-AVR-NOutB/AS3_LTM_SSLoL_AVR_NOutB.json",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL for the AS3 declaration JSON file to be deployed. Input *none* (without the *) to deploy without a service configuration."
     },
@@ -123,7 +123,7 @@
 
     "SSMTPConfiguration" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/SSMTP/GMailSSMTP.conf",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/GMailSSMTP.conf",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL of the SSMTP configuration. This CloudFormation template requires a SSMTP configuration (i.e. Mandatory Input). If the SSMTP configuration is located at AWS S3, ensure that this CloudFormation template can read the file. If the SSMTP configuration is located at GitHub, ensure that this CloudFormation template can read the RAW SSMTP configuration file (i.e. NOT a web page containing the SSMTP configuration file)."
     },
@@ -143,7 +143,7 @@
     },
     "UserAlertConfiguration" : {
       "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/SSMTP/user_alert.archive",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/user_alert.archive",
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL of the additional user_alert configuration."
     },
@@ -2453,55 +2453,55 @@
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/SSMTP/BigIPSendMail"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/BigIPSendMail"
        },
        "/config/ClearFlags": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/SSMTP/ClearFlags"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/ClearFlags"
        },
        "/config/RotateLog": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/SSMTP/RotateLog"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/RotateLog"
        },
        "/config/lidsa/BigIPLidsa": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/lidsa/BigIPLidsa"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/BigIPLidsa"
        },
        "/config/lidsa/BigIPSendMailLidsa": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/lidsa/BigIPSendMailLidsa"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/BigIPSendMailLidsa"
        },
        "/config/lidsa/ClearLidsaFlags": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/lidsa/ClearLidsaFlags"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/ClearLidsaFlags"
        },
        "/etc/crontab": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/Upgrade/crontab"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/crontab"
        },
        "/etc/anacrontab": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/Upgrade/anacrontab"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/anacrontab"
        },
        "/config/UpGrade": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/Notes-CF-BigIP-Lab/master/Upgrade/UpGrade"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpGrade"
        },
 
        "/etc/ssmtp/ArchiveSSMTPConfiguration": {
