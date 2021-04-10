@@ -28,6 +28,9 @@
       }
     }
   },
+  "Conditions": {
+   "DownLoadImage": { "Fn::Equals" : [ { "Ref": "UpgradeBigIP" }, "No" ] }
+  },
 
 
 
@@ -2065,7 +2068,7 @@
            "--user admin",
            "--password-url file:///config/cloud/aws/.adminPassword",
            "--password-encrypted",
-           "--hostname `/usr/bin/curl -s -f --retry 22 --interface \`cat /config/lidsa/IPToAWSInstanceMetaData\` http://169.254.169.254/latest/meta-data/hostname`",
+           "--hostname `/usr/bin/curl -s -f --retry 22 --interface \\`cat /config/lidsa/IPToAWSInstanceMetaData\\` http://169.254.169.254/latest/meta-data/hostname`",
            "--ntp ", { "Ref": "NTPServer" },
            "--tz ", { "Ref": "TimeZone" },
            "--dns ${NAME_SERVER}",
@@ -2574,13 +2577,25 @@
         "group": "root",
         "mode": "000644",
         "owner": "root",
-        "source": { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" } ] ] }
+        "source": {
+         "Fn::If": [
+          "DownLoadImage",
+          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso",
+          { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" } ] ] }
+         ]
+        }
        },
        "/shared/images/UpgradeImage.iso.md5": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
-        "source": { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" }, ".md5" ] ] }
+        "source": {
+         "Fn::If": [
+          "DownLoadImage",
+          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso.md5",
+          { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" }, ".md5" ] ] }
+         ]
+        }
        },
        "/config/cloud/domain.name.rsa.key": {
         "group": "root",
