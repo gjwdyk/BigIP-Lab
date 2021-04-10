@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "HC's Mark --------->>>>>>>>> Starting UpGrade bash script."
+source /config/cloud/aws/onboard_config_vars
 
 DEBUG=ON
 
@@ -129,7 +130,7 @@ else
 
  echo "`date +%Y%m%d%H%M%S` UpGrade Process ."
  if [ -f /shared/images/UpgradeImage.iso ] && [ -f /shared/images/UpgradeImage.iso.md5 ] && [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
-  if [[ "$UpgradeBigIP" == "No" ]]; then
+  if [[ $UpgradeBigIP == "No" ]]; then
    echo "`date +%Y%m%d%H%M%S` UpGrade was NOT requested ."
   else
    mv /shared/images/UpgradeImage.iso /shared/images/`cat $UpGradeImageName_File`
