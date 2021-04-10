@@ -43,7 +43,7 @@ if [ ! -d /config/Flags ]; then
 fi
 # cp --force /config/crontab /etc/crontab
 # cp --force /config/anacrontab /etc/anacrontab
-echo "@reboot                                             root      /bin/sudo /bin/cp --force /etc/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
+echo "@reboot                                             root      /bin/sudo /bin/cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
 echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
 echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
 
