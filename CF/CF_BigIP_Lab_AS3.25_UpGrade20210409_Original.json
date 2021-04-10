@@ -2513,6 +2513,18 @@
         "owner": "root",
         "source": { "Ref": "SSMTPConfiguration" }
        },
+       "/etc/ssmtp/SMTPUserID": {
+        "content": { "Ref": "SMTPUserID" },
+        "group": "root",
+        "mode": "000644",
+        "owner": "root"
+       },
+       "/etc/ssmtp/SMTPUserPassword": {
+        "content":{ "Ref": "SMTPUserPassword" },
+        "group": "root",
+        "mode": "000644",
+        "owner": "root"
+       },
        "/config/user_alert.archive": {
         "group": "root",
         "mode": "000644",
