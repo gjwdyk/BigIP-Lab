@@ -2065,7 +2065,7 @@
            "--user admin",
            "--password-url file:///config/cloud/aws/.adminPassword",
            "--password-encrypted",
-           "--hostname `/usr/bin/curl -s -f --retry 22 --interface ", { "Fn::FindInMap": [ "IPAddressConfig", "BigIPInstance", "Management" ] }, " http://169.254.169.254/latest/meta-data/hostname`",
+           "--hostname `/usr/bin/curl -s -f --retry 22 --interface \`cat /config/lidsa/IPToAWSInstanceMetaData\` http://169.254.169.254/latest/meta-data/hostname`",
            "--ntp ", { "Ref": "NTPServer" },
            "--tz ", { "Ref": "TimeZone" },
            "--dns ${NAME_SERVER}",
