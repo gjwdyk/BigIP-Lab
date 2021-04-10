@@ -31,19 +31,22 @@ while ( ! ( ( grep "Sending signal" "$Log_File" | grep "PASSWORD_CREATED" ) && (
 done
 
 
+
 echo "`date +%Y%m%d%H%M%S` SSMTP Configurations ."
-echo "AuthUser=`cat /etc/ssmtp/SMTPUserID`" >> /etc/ssmtp/ArchiveSSMTPConfiguration
-echo "AuthPass=`cat /etc/ssmtp/SMTPUserPassword`" >> /etc/ssmtp/ArchiveSSMTPConfiguration
+echo "AuthUser=`cat /config/ssmtp/SMTPUserID`" >> /config/ssmtp/ArchiveSSMTPConfiguration
+echo "AuthPass=`cat /config/ssmtp/SMTPUserPassword`" >> /config/ssmtp/ArchiveSSMTPConfiguration
 cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
 chmod 666 /etc/ssmtp/ca-bundle.crt
-cp --force /etc/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
+cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
 if [ ! -d /config/Flags ]; then
  mkdir /config/Flags
 fi
-cat /config/user_alert.archive >> /config/user_alert.conf
+cp --force /config/crontab /etc/crontab
+cp --force /config/anacrontab /etc/anacrontab
 echo "@reboot                                             root      /bin/sudo /bin/cp --force /etc/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
 echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
 echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
+
 
 
 echo "`date +%Y%m%d%H%M%S` Lidsa Configurations ."
@@ -59,6 +62,7 @@ echo "3          22   anacron.daily     /bin/sudo /bin/bash /config/lidsa/ClearL
 awk 'BEGIN{ORS=""} $1=="nameserver" {print $2; exit}' /etc/resolv.conf > /config/lidsa/DNSServer
 printf "`cat /config/lidsa/TemporaryLidsa`" > /config/lidsa/LoremIpsumDolorSitAmet
 #rm --force /config/lidsa/TemporaryLidsa
+
 
 
 printf "$UpGradeVolume_Value" > "$UpGradeVolume_File"
@@ -113,6 +117,7 @@ else
  echo "`date +%Y%m%d%H%M%S` Unit to be UpGraded ."
 
  echo "`date +%Y%m%d%H%M%S` Custom TMSH Configuration ."
+ cat /config/user_alert.archive >> /config/user_alert.conf
  declare -a tmsh=()
  tmsh+=(
   "tmsh modify auth user admin password `cat /config/BigIPAdminPassword`"
@@ -176,5 +181,5 @@ else
 
 
 
- echo "`date +%Y%m%d%H%M%S` Custom Configuration Finished ."
 fi
+echo "`date +%Y%m%d%H%M%S` Custom Configuration Finished ."

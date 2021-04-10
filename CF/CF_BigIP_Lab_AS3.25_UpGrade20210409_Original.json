@@ -2488,13 +2488,13 @@
         "owner": "root",
         "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/ClearLidsaFlags"
        },
-       "/etc/crontab": {
+       "/config/crontab": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
         "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/crontab"
        },
-       "/etc/anacrontab": {
+       "/config/anacrontab": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
@@ -2507,19 +2507,19 @@
         "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpGrade"
        },
 
-       "/etc/ssmtp/ArchiveSSMTPConfiguration": {
+       "/config/ssmtp/ArchiveSSMTPConfiguration": {
         "group": "root",
         "mode": "000644",
         "owner": "root",
         "source": { "Ref": "SSMTPConfiguration" }
        },
-       "/etc/ssmtp/SMTPUserID": {
+       "/config/ssmtp/SMTPUserID": {
         "content": { "Ref": "SMTPUserID" },
         "group": "root",
         "mode": "000644",
         "owner": "root"
        },
-       "/etc/ssmtp/SMTPUserPassword": {
+       "/config/ssmtp/SMTPUserPassword": {
         "content":{ "Ref": "SMTPUserPassword" },
         "group": "root",
         "mode": "000644",
@@ -2537,7 +2537,7 @@
         "mode": "000644",
         "owner": "root"
        },
-       "/etc/ssmtp/eMailNotificationRecipient": {
+       "/config/ssmtp/eMailNotificationRecipient": {
         "content": { "Ref": "eMailNotificationRecipient" },
         "group": "root",
         "mode": "000644",
