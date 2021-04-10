@@ -2213,7 +2213,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/cloud/aws/getNameServer.sh": {
@@ -2231,7 +2231,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/cloud/aws/onboard_config_vars": {
@@ -2256,7 +2256,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/cloud/aws/rm-password.sh": {
@@ -2291,7 +2291,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/installCloudLibs.sh": {
@@ -2339,7 +2339,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/verifyHash": {
@@ -2396,7 +2396,7 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
        "/config/waitThenRun.sh": {
@@ -2417,37 +2417,37 @@
          ]
         },
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root"
        },
 
        "/config/cloud/f5-cloud-libs.tar.gz": {
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root",
         "source": "http://cdn.f5.com/product/cloudsolutions/f5-cloud-libs/v4.24.0/f5-cloud-libs.tar.gz"
        },
        "/config/cloud/f5-cloud-libs-aws.tar.gz": {
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root",
         "source": "http://cdn.f5.com/product/cloudsolutions/f5-cloud-libs-aws/v2.9.1/f5-cloud-libs-aws.tar.gz"
        },
        "/var/config/rest/downloads/f5-appsvcs-3.25.0-3.noarch.rpm": {
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root",
         "source": "http://cdn.f5.com/product/cloudsolutions/f5-appsvcs-extension/v3.25.0/f5-appsvcs-3.25.0-3.noarch.rpm"
        },
        "/config/cloud/aws/f5.service_discovery.tmpl": {
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root",
         "source": "http://cdn.f5.com/product/cloudsolutions/iapps/common/f5-service-discovery/v2.3.2/f5.service_discovery.tmpl"
        },
        "/config/cloud/aws/f5.cloud_logger.v1.0.0.tmpl": {
         "group": "root",
-        "mode": "000755",
+        "mode": "000777",
         "owner": "root",
         "source": "http://cdn.f5.com/product/cloudsolutions/iapps/common/f5-cloud-logger/v1.0.0/f5.cloud_logger.v1.0.0.tmpl"
        },
@@ -2490,13 +2490,13 @@
        },
        "/config/crontab": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/crontab"
        },
        "/config/anacrontab": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/anacrontab"
        },
@@ -2509,85 +2509,85 @@
 
        "/config/ssmtp/ArchiveSSMTPConfiguration": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": { "Ref": "SSMTPConfiguration" }
        },
        "/config/ssmtp/SMTPUserID": {
         "content": { "Ref": "SMTPUserID" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/ssmtp/SMTPUserPassword": {
         "content":{ "Ref": "SMTPUserPassword" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/user_alert.archive": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": { "Ref": "UserAlertConfiguration" }
        },
        "/config/BigIPUnitID": {
         "content": { "Fn::Join" : [ "_", [ { "Ref": "TagPreFix" }, { "Ref": "AWS::StackName" }, "BigIPInstance" ] ] },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/ssmtp/eMailNotificationRecipient": {
         "content": { "Ref": "eMailNotificationRecipient" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/lidsa/BigIPModules": {
         "content": { "Ref": "BigIPModules" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/lidsa/TimeZone": {
         "content": { "Ref": "TimeZone" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/lidsa/NTPServer": {
         "content": { "Ref": "NTPServer" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/lidsa/TemporaryLidsa": {
         "content": { "Ref": "Lidsa" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/lidsa/IPToAWSInstanceMetaData": {
         "content": { "Fn::FindInMap": [ "IPAddressConfig", "BigIPInstance", "Management" ] },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/BigIPAdminPassword": {
         "content": { "Ref": "BigIPAdminPassword" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/config/UpgradeImageFileName": {
         "content": { "Ref": "UpgradeImageFileName" },
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root"
        },
        "/shared/images/UpgradeImage.iso": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": {
          "Fn::If": [
@@ -2599,7 +2599,7 @@
        },
        "/shared/images/UpgradeImage.iso.md5": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": {
          "Fn::If": [
@@ -2611,13 +2611,13 @@
        },
        "/config/cloud/domain.name.rsa.key": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": { "Ref": "BigIPTrafficTLSKey" }
        },
        "/config/cloud/domain.name.rsa.crt": {
         "group": "root",
-        "mode": "000644",
+        "mode": "000666",
         "owner": "root",
         "source": { "Ref": "BigIPTrafficTLSCertificate" }
        }
