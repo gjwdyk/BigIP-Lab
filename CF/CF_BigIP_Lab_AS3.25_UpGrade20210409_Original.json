@@ -2696,7 +2696,7 @@
        [
         "#!/bin/bash\n",
 
-        "Wait_Period=\"22s\"\n",
+        "Wait_Period=\"3m 33s\"\n",
         "Log_File=/var/log/cloud/aws/install.log\n",
 
         "if [ -f /config/UpgradeImageFileName ]; then\n",
@@ -2707,19 +2707,13 @@
         "  else\n",
         "    echo \"`date +%Y%m%d%H%M%S` AWS CloudFormation UserData :   /shared/images/`cat /config/UpgradeImageFileName`   and/or   /shared/images/`cat /config/UpgradeImageFileName`.md5   NOT found. UpGrade has NOT been executed or NOT requested.\"\n",
         "    /opt/aws/apitools/cfn-init/bin/cfn-init -v -s ", { "Ref": "AWS::StackId" }, " -r ", "BigIPInstance", " --region ", { "Ref": "AWS::Region" }, "\n",
-        "#   while ( ! [ -f \"$Log_File\" ] ); do\n",
-        "#    echo \"`date +%Y%m%d%H%M%S` Wait for $Log_File . Sleep for $Wait_Period .\"\n",
-        "     sleep $Wait_Period\n",
-        "#   done\n",
+        "    sleep $Wait_Period\n",
         "    /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
         "  fi\n",
         "else\n",
         "  echo \"`date +%Y%m%d%H%M%S` AWS CloudFormation UserData :   /config/UpgradeImageFileName   NOT found. UpGrade has NOT been executed or NOT requested.\"\n",
         "  /opt/aws/apitools/cfn-init/bin/cfn-init -v -s ", { "Ref": "AWS::StackId" }, " -r ", "BigIPInstance", " --region ", { "Ref": "AWS::Region" }, "\n",
-        "# while ( ! [ -f \"$Log_File\" ] ); do\n",
-        "#  echo \"`date +%Y%m%d%H%M%S` Wait for $Log_File . Sleep for $Wait_Period .\"\n",
-        "   sleep $Wait_Period\n",
-        "# done\n",
+        "  sleep $Wait_Period\n",
         "  /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
         "fi\n",
 

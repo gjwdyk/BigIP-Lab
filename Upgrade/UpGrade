@@ -40,12 +40,25 @@ if [ "$DEBUG" == "ON" ] ; then
  echo "`cat $UpGradeVolume_File`"
  echo "tmsh show sys software :"
  echo "`tmsh show sys software`"
- echo "cat /config/lidsa/TemporaryLidsa :"
- echo "`cat /config/lidsa/TemporaryLidsa`"
 fi
 
 if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" ); then
  echo "`date +%Y%m%d%H%M%S` Unit had been UpGraded ."
+
+ echo "`date +%Y%m%d%H%M%S` SSMTP Configurations ."
+ cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
+ chmod 666 /etc/ssmtp/ca-bundle.crt
+ cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
+ cp --force /config/crontab /etc/crontab
+ cp --force /config/anacrontab /etc/anacrontab
+ echo "@reboot                                             root      /bin/sudo /bin/cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
+ echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
+ echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
+ echo "3          22   anacron.daily     /bin/sudo /bin/bash /config/lidsa/ClearLidsaFlags" >> /etc/anacrontab
+ if [ "$DEBUG" == "ON" ] ; then
+  echo "cat /config/lidsa/LoremIpsumDolorSitAmet :"
+  echo "`cat /config/lidsa/LoremIpsumDolorSitAmet`"
+ fi
 
  if [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
   echo "`date +%Y%m%d%H%M%S` Preparing to ReLicense the Unit. Wait for $UpGrade_ShortWait_Period ."
@@ -78,7 +91,6 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
 else
  echo "`date +%Y%m%d%H%M%S` Unit to be UpGraded ."
 
-
  echo "`date +%Y%m%d%H%M%S` SSMTP Configurations ."
  echo "AuthUser=`cat /config/ssmtp/SMTPUserID`" >> /config/ssmtp/ArchiveSSMTPConfiguration
  echo "AuthPass=`cat /config/ssmtp/SMTPUserPassword`" >> /config/ssmtp/ArchiveSSMTPConfiguration
@@ -94,7 +106,6 @@ else
  echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
  echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
 
-
  echo "`date +%Y%m%d%H%M%S` Lidsa Configurations ."
  if [ ! -d /config/lidsa ]; then
   mkdir /config/lidsa
@@ -107,14 +118,13 @@ else
  echo "3          22   anacron.daily     /bin/sudo /bin/bash /config/lidsa/ClearLidsaFlags" >> /etc/anacrontab
  awk 'BEGIN{ORS=""} $1=="nameserver" {print $2; exit}' /etc/resolv.conf > /config/lidsa/DNSServer
  printf "`cat /config/lidsa/TemporaryLidsa`" > /config/lidsa/LoremIpsumDolorSitAmet
- rm --force /config/lidsa/TemporaryLidsa
  if [ "$DEBUG" == "ON" ] ; then
   echo "cat /config/lidsa/TemporaryLidsa :"
   echo "`cat /config/lidsa/TemporaryLidsa`"
   echo "cat /config/lidsa/LoremIpsumDolorSitAmet :"
   echo "`cat /config/lidsa/LoremIpsumDolorSitAmet`"
  fi
-
+ rm --force /config/lidsa/TemporaryLidsa
 
  echo "`date +%Y%m%d%H%M%S` Custom TMSH Configuration ."
  cat /config/user_alert.archive >> /config/user_alert.conf
