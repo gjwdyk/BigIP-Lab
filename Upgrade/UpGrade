@@ -49,6 +49,7 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
  cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
  chmod 666 /etc/ssmtp/ca-bundle.crt
  cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
+ cp --force /config/ssmtp/eMailNotificationRecipient /etc/ssmtp/eMailNotificationRecipient
  cp --force /config/crontab /etc/crontab
  cp --force /config/anacrontab /etc/anacrontab
  echo "@reboot                                             root      /bin/sudo /bin/cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
@@ -97,6 +98,7 @@ else
  cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
  chmod 666 /etc/ssmtp/ca-bundle.crt
  cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
+ cp --force /config/ssmtp/eMailNotificationRecipient /etc/ssmtp/eMailNotificationRecipient
  if [ ! -d /config/Flags ]; then
   mkdir /config/Flags
  fi
