@@ -2248,10 +2248,15 @@
            "timezone='", { "Ref": "TimeZone" }, "'\n",
            "ntpServer='", { "Ref": "NTPServer" }, "'\n",
            "declarationUrl='", { "Ref": "AS3URL" }, "'\n",
-           "UpgradeBigIP='", { "Ref": "UpgradeBigIP" }, "'\n",
            "AllowPhoneHome='", { "Ref": "AllowPhoneHome" }, "'\n",
            "passwd=$(f5-rest-node /config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/decryptDataFromFile.js --data-file /config/cloud/aws/.adminPassword)\n",
-           "managementGuiPort='443'\n"
+           "managementGuiPort='443'\n",
+
+           "UpGradeVolume_File='/config/UpgradeVolume'\n",
+           "UpGradeVolume_Value='HD1.9'\n",
+           "UpgradeBigIP='", { "Ref": "UpgradeBigIP" }, "'\n",
+
+           "#\n"
           ]
          ]
         },
@@ -2690,25 +2695,25 @@
        "",
        [
         "#!/bin/bash\n",
-
+        "source /config/cloud/aws/onboard_config_vars\n",
+        "System_Log_File=/var/log/ltm\n",
         "Log_File=/var/log/cloud/aws/install.log\n",
-        "UpGradeImageName_File=/config/UpgradeImageFileName\n",
-        "UpGradeImage_File=/shared/images/`cat $UpGradeImageName_File`\n",
 
-        "if [ -f \"$Log_File\" ]; then\n",
-        "  sudo echo \"UserData `date +%Y%m%d%H%M%S` $Log_File exist.\" >> \"$Log_File\"\n",
-        "else\n",
-        "  sudo touch \"$Log_File\"\n",
-        "  sudo echo \"UserData `date +%Y%m%d%H%M%S` touch $Log_File .\" >> \"$Log_File\"\n",
-        "fi\n",
-
-        "if [ -f \"$UpGradeImage_File\" ]; then\n",
-        "  sudo echo \"UserData `date +%Y%m%d%H%M%S` $UpGradeImage_File exist.\" >> \"$Log_File\"\n",
-        "  /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
-        "else\n",
-        "  sudo echo \"UserData `date +%Y%m%d%H%M%S` $UpGradeImage_File does NOT exist.\" >> \"$Log_File\"\n",
+        "if [[ $UpgradeBigIP == \"No\" ]]; then\n",
+        "  echo \"`date +%Y%m%d%H%M%S` AWS CloudFormation UserData : UpGrade was NOT Requested.\" >> \"$System_Log_File\"\n",
         "  /opt/aws/apitools/cfn-init/bin/cfn-init -v -s ", { "Ref": "AWS::StackId" }, " -r ", "BigIPInstance", " --region ", { "Ref": "AWS::Region" }, "\n",
+        "  Sleep 22s\n",
         "  /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
+        "else\n",
+        "  if [ -f \"$UpGradeVolume_File\" ] && [ -f \"/shared/images/`cat /config/UpgradeImageFileName`\" ] && [ -f \"/shared/images/`cat /config/UpgradeImageFileName`.md5\" ]; then\n",
+        "    echo \"`date +%Y%m%d%H%M%S` AWS CloudFormation UserData : UpGrade files were found. UpGrade had been executed before.\" >> \"$System_Log_File\"\n",
+        "    /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
+        "  else\n",
+        "    echo \"`date +%Y%m%d%H%M%S` AWS CloudFormation UserData : UpGrade files are NOT complete. UpGrade has NOT been executed.\" >> \"$System_Log_File\"\n",
+        "    /opt/aws/apitools/cfn-init/bin/cfn-init -v -s ", { "Ref": "AWS::StackId" }, " -r ", "BigIPInstance", " --region ", { "Ref": "AWS::Region" }, "\n",
+        "    Sleep 22s\n",
+        "    /bin/sudo /bin/bash /config/UpGrade >> \"$Log_File\"\n",
+        "  fi\n",
         "fi\n",
 
         "\n"

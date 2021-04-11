@@ -10,9 +10,6 @@ Lidsa_Failed_Flag=/config/lidsa/cae/Lidsa_Failed.flag
 
 Log_Wait_Period="3m 33s"
 
-UpGradeVolume_File=/config/UpgradeVolume
-UpGradeVolume_Value="HD1.9"
-
 UpGradeImageName_File=/config/UpgradeImageFileName
 
 UpGrade_ShortWait_Period="22s"
