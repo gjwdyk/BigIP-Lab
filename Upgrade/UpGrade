@@ -8,9 +8,9 @@ DEBUG=ON
 Log_File=/var/log/cloud/aws/install.log
 Lidsa_Failed_Flag=/config/lidsa/cae/Lidsa_Failed.flag
 
-Log_Wait_Period="3m 33s"
-
 UpGradeImageName_File=/config/UpgradeImageFileName
+
+Log_Wait_Period="3m 33s"
 
 UpGrade_ShortWait_Period="22s"
 UpGrade_LongWait_Period="2m 2s"
@@ -29,39 +29,6 @@ done
 
 
 
-echo "`date +%Y%m%d%H%M%S` SSMTP Configurations ."
-echo "AuthUser=`cat /config/ssmtp/SMTPUserID`" >> /config/ssmtp/ArchiveSSMTPConfiguration
-echo "AuthPass=`cat /config/ssmtp/SMTPUserPassword`" >> /config/ssmtp/ArchiveSSMTPConfiguration
-cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
-chmod 666 /etc/ssmtp/ca-bundle.crt
-cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
-if [ ! -d /config/Flags ]; then
- mkdir /config/Flags
-fi
-# cp --force /config/crontab /etc/crontab
-# cp --force /config/anacrontab /etc/anacrontab
-echo "@reboot                                             root      /bin/sudo /bin/cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
-echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
-echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
-
-
-
-echo "`date +%Y%m%d%H%M%S` Lidsa Configurations ."
-if [ ! -d /config/lidsa ]; then
- mkdir /config/lidsa
- mkdir /config/lidsa/cae
-else
- if [ ! -d /config/lidsa/cae ]; then
-  mkdir /config/lidsa/cae
- fi
-fi
-echo "3          22   anacron.daily     /bin/sudo /bin/bash /config/lidsa/ClearLidsaFlags" >> /etc/anacrontab
-awk 'BEGIN{ORS=""} $1=="nameserver" {print $2; exit}' /etc/resolv.conf > /config/lidsa/DNSServer
-printf "`cat /config/lidsa/TemporaryLidsa`" > /config/lidsa/LoremIpsumDolorSitAmet
-#rm --force /config/lidsa/TemporaryLidsa
-
-
-
 printf "$UpGradeVolume_Value" > "$UpGradeVolume_File"
 "/config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/waitForMcp.sh"
 echo "`date +%Y%m%d%H%M%S` Checking PreConditions. Wait for $UpGrade_ShortWait_Period ."
@@ -75,8 +42,6 @@ if [ "$DEBUG" == "ON" ] ; then
  echo "`tmsh show sys software`"
  echo "cat /config/lidsa/TemporaryLidsa :"
  echo "`cat /config/lidsa/TemporaryLidsa`"
- echo "cat /config/lidsa/LoremIpsumDolorSitAmet :"
- echo "`cat /config/lidsa/LoremIpsumDolorSitAmet`"
 fi
 
 if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" ); then
@@ -112,6 +77,44 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
 
 else
  echo "`date +%Y%m%d%H%M%S` Unit to be UpGraded ."
+
+
+ echo "`date +%Y%m%d%H%M%S` SSMTP Configurations ."
+ echo "AuthUser=`cat /config/ssmtp/SMTPUserID`" >> /config/ssmtp/ArchiveSSMTPConfiguration
+ echo "AuthPass=`cat /config/ssmtp/SMTPUserPassword`" >> /config/ssmtp/ArchiveSSMTPConfiguration
+ cp --force /etc/pki/tls/certs/ca-bundle.crt /etc/ssmtp/ca-bundle.crt
+ chmod 666 /etc/ssmtp/ca-bundle.crt
+ cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf
+ if [ ! -d /config/Flags ]; then
+  mkdir /config/Flags
+ fi
+ cp --force /config/crontab /etc/crontab
+ cp --force /config/anacrontab /etc/anacrontab
+ echo "@reboot                                             root      /bin/sudo /bin/cp --force /config/ssmtp/ArchiveSSMTPConfiguration /etc/ssmtp/ssmtp.conf" >> /etc/crontab
+ echo "*/9         *         *         *         *         root      /bin/sudo /bin/bash /config/ClearFlags" >> /etc/crontab
+ echo "1           9   anacron.daily     /bin/sudo /bin/bash /config/RotateLog" >> /etc/anacrontab
+
+
+ echo "`date +%Y%m%d%H%M%S` Lidsa Configurations ."
+ if [ ! -d /config/lidsa ]; then
+  mkdir /config/lidsa
+  mkdir /config/lidsa/cae
+ else
+  if [ ! -d /config/lidsa/cae ]; then
+   mkdir /config/lidsa/cae
+  fi
+ fi
+ echo "3          22   anacron.daily     /bin/sudo /bin/bash /config/lidsa/ClearLidsaFlags" >> /etc/anacrontab
+ awk 'BEGIN{ORS=""} $1=="nameserver" {print $2; exit}' /etc/resolv.conf > /config/lidsa/DNSServer
+ printf "`cat /config/lidsa/TemporaryLidsa`" > /config/lidsa/LoremIpsumDolorSitAmet
+ rm --force /config/lidsa/TemporaryLidsa
+ if [ "$DEBUG" == "ON" ] ; then
+  echo "cat /config/lidsa/TemporaryLidsa :"
+  echo "`cat /config/lidsa/TemporaryLidsa`"
+  echo "cat /config/lidsa/LoremIpsumDolorSitAmet :"
+  echo "`cat /config/lidsa/LoremIpsumDolorSitAmet`"
+ fi
+
 
  echo "`date +%Y%m%d%H%M%S` Custom TMSH Configuration ."
  cat /config/user_alert.archive >> /config/user_alert.conf
