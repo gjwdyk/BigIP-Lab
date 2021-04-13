@@ -3254,7 +3254,13 @@
                             },
                             "/config/UpgradeImageFileName": {
                                 "content": {
-                                    "Ref": "UpgradeImageFileName"
+                                    "Fn::If": [
+                                        "DownLoadImage",
+                                        "BIGIP-12.3.4.5-6.7.89.iso",
+                                        {
+                                            "Ref": "UpgradeImageFileName"
+                                        }
+                                    ]
                                 },
                                 "group": "root",
                                 "mode": "000666",
