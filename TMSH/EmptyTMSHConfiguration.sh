@@ -23,19 +23,21 @@
 #╚═════════════════════════════════════╝
 
 echo "This TMSH Commands File is practically empty, just showing some system information."
-tmsh show sys software
-tmsh show sys license
 
-
-
-#╔══════════╗
-#║   Save   ║
-#╚══════════╝
-#
-# Don't forget to save after configuration changes (in case actual configuration performed above)
-#
-
-#tmsh save /sys config
+declare -a tmsh=()
+tmsh+=(
+ "tmsh show sys software"
+ "tmsh show sys license"
+ "tmsh save /sys config"
+)
+for CMD in "${tmsh[@]}"; do
+ "/config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/waitForMcp.sh"
+ if $CMD; then
+  echo "command $CMD successfully executed."
+ else
+  error_exit "$LINENO: An error has occurred while executing $CMD. Aborting!"
+ fi
+done
 
 
 
