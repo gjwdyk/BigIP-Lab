@@ -145,6 +145,8 @@ else
   fi
  done
 
+ /bin/sudo /bin/bash /config/TMSHCommands.sh
+
  echo "`date +%Y%m%d%H%M%S` UpGrade Process ."
  if [ -f /shared/images/UpgradeImage.iso ] && [ -f /shared/images/UpgradeImage.iso.md5 ] && [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
   if [[ $UpgradeBigIP == "No" ]]; then
