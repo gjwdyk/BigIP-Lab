@@ -30,7 +30,8 @@
   },
   "Conditions": {
    "DownLoadImage": { "Fn::Equals" : [ { "Ref": "UpgradeBigIP" }, "No" ] },
-   "UseTMSHCommandsFile": { "Fn::Equals" : [ { "Ref": "UseTMSHConfiguration" }, "No" ] }
+   "UseTMSHCommandsFile": { "Fn::Or": [ { "Fn::Equals" : [ { "Ref": "ConfigurationMethod" }, "TMSH" ] }, { "Fn::Equals" : [ { "Ref": "ConfigurationMethod" }, "AS3 and TMSH" ] } ] },
+   "UseAS3File": { "Fn::Or": [ { "Fn::Equals" : [ { "Ref": "ConfigurationMethod" }, "AS3" ] }, { "Fn::Equals" : [ { "Ref": "ConfigurationMethod" }, "AS3 and TMSH" ] } ] }
   },
 
 
@@ -98,7 +99,7 @@
     },
     "BigIPModules" : {
       "Type": "String",
-      "Default": "ltm:nominal,avr:nominal,asm:nominal,apm:nominal",
+      "Default": "ltm:nominal,avr:nominal,gtm:nominal,afm:nominal,asm:nominal,fps:nominal,apm:nominal",
       "Description": "Comma separated list of modules and levels to provision, for example: ltm:nominal,avr:nominal,asm:nominal,apm:nominal . Provisionable modules are: afm, am, apm, asm, avr, cgnat, dos, fps, gtm, ilx, lc, ltm, pem, sslo, swg, urldb ."
     },
     "BigIPTrafficTLSKey" : {
@@ -113,25 +114,24 @@
       "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
       "Description": "URL of the TLS Certificate which Big-IP will use to encrypt or decrypt the requests and responses between users and servers. This CloudFormation template requires the TLS Private Key and Certificate (i.e. Mandatory Input). If the Private Key is located at AWS S3, ensure that this CloudFormation template can read the file. If the Private Key is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file)."
     },
-    "AS3URL" : {
-      "Type": "String",
-      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/AS3_LTM_SSLoL_AVR_NOutB.json",
-      "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
-      "Description": "URL for the AS3 declaration JSON file to be deployed. Input *none* (without the *) to deploy without a service configuration."
-    },
     "BigIPAdminPassword" : {
       "Type": "String",
       "NoEcho": "true",
       "Description": "Password for the Admin User of Big-IP."
     },
-    "UseTMSHConfiguration": {
+    "ConfigurationMethod": {
      "AllowedValues": [
-      "Yes",
-      "No"
+      "None", "AS3", "TMSH", "AS3 and TMSH"
      ],
-     "Default": "No",
-     "Description": "Whether the Big-IP to be configured using TMSH Commands File. If **Yes** is selected, the Big-IP will execute the indicated TMSH Commands File, and therefore the corresponding TMSH Commands File's URL Path and File Name should be provided properly.",
+     "Default": "None",
+     "Description": "Select the method to configure the Big-IP. Note that between AS3 and TMSH there are possibilities for conflicts, and therefore both AS3 File and TMSH Commands File need to be sync-ed between each other.",
      "Type": "String"
+    },
+    "AS3URL" : {
+      "Type": "String",
+      "Default": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/AS3_LTM_SSLoL_AVR_NOutB.json",
+      "AllowedPattern": "^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$|^none$",
+      "Description": "URL for the AS3 declaration JSON file to be deployed. Input *none* (without the *) to deploy without a service configuration."
     },
     "BigIPTMSHConfiguration" : {
       "Type": "String",
@@ -249,8 +249,8 @@
        "BigIPAdminPassword",
        "BigIPTrafficTLSKey",
        "BigIPTrafficTLSCertificate",
+       "ConfigurationMethod",
        "AS3URL",
-       "UseTMSHConfiguration",
        "BigIPTMSHConfiguration"
       ]
      },
@@ -346,11 +346,11 @@
      "BigIPTrafficTLSCertificate": {
       "default": "URL of the SSL/TLS Certificate"
      },
+     "ConfigurationMethod": {
+      "default": "Select the Method to Configure Big-IP"
+     },
      "AS3URL": {
       "default": "AS3 Declaration URL"
-     },
-     "UseTMSHConfiguration": {
-      "default": "Use TMSH Commands File to Configure the Big-IP ?"
      },
      "BigIPTMSHConfiguration": {
       "default": "URL of the Big-IP TMSH Commands File"
@@ -2262,7 +2262,7 @@
            "adminUsername='admin'\n",
            "timezone='", { "Ref": "TimeZone" }, "'\n",
            "ntpServer='", { "Ref": "NTPServer" }, "'\n",
-           "declarationUrl='", { "Ref": "AS3URL" }, "'\n",
+           "declarationUrl='", { "Fn::If": [ "UseAS3File", { "Ref": "AS3URL" }, "none" ] }, "'\n",
            "AllowPhoneHome='", { "Ref": "AllowPhoneHome" }, "'\n",
            "passwd=$(f5-rest-node /config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/decryptDataFromFile.js --data-file /config/cloud/aws/.adminPassword)\n",
            "managementGuiPort='443'\n",
@@ -2524,7 +2524,7 @@
         "group": "root",
         "mode": "000777",
         "owner": "root",
-        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpGrade"
+        "source": "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpGrade.sh"
        },
 
        "/config/ssmtp/ArchiveSSMTPConfiguration": {
@@ -2606,8 +2606,8 @@
         "source": {
          "Fn::If": [
           "UseTMSHCommandsFile",
-          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh",
-          { "Ref": "BigIPTMSHConfiguration" }
+          { "Ref": "BigIPTMSHConfiguration" },
+          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh"
          ]
         }
        },
