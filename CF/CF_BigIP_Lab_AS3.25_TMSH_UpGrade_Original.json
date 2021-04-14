@@ -2600,6 +2600,22 @@
         "mode": "000666",
         "owner": "root"
        },
+       "/config/AS3Configuration.sh": {
+        "group": "root",
+        "mode": "000777",
+        "owner": "root",
+        "source": {
+         "Fn::If": [
+          "DownLoadImage",
+          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/EmptyAS3Configuration.sh",
+          { "Fn::If": [
+            "UseAS3File",
+            "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/AS3Configuration.sh",
+            "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/EmptyAS3Configuration.sh"
+          ] }
+         ]
+        }
+       },
        "/config/TMSHPreCommands.sh": {
         "group": "root",
         "mode": "000777",

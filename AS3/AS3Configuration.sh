@@ -1,4 +1,4 @@
-#!/bin/bash\n",
+#!/bin/bash
 
 PROGNAME=$(basename $0)
 function error_exit {

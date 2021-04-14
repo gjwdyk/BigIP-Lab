@@ -61,14 +61,14 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
   echo "`cat /config/lidsa/LoremIpsumDolorSitAmet`"
  fi
 
- if [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
-  echo "`date +%Y%m%d%H%M%S` Preparing to ReLicense the Unit. Wait for $UpGrade_ShortWait_Period ."
-  sync
-  sleep $UpGrade_ShortWait_Period
-  /bin/sudo /bin/bash /config/lidsa/BigIPSendMailLidsa ReLicense_On_UpGrade_Procedure '' 'ReLicense on Upgrade'
- else
-  echo "`date +%Y%m%d%H%M%S` Value of $UpGradeImageName_File : `cat $UpGradeImageName_File` does NOT match Regular Expression ."
- fi
+ #if [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
+ # echo "`date +%Y%m%d%H%M%S` Preparing to ReLicense the Unit. Wait for $UpGrade_ShortWait_Period ."
+ # sync
+ # sleep $UpGrade_ShortWait_Period
+ # /bin/sudo /bin/bash /config/lidsa/BigIPSendMailLidsa ReLicense_On_UpGrade_Procedure '' 'ReLicense on Upgrade'
+ #else
+ # echo "`date +%Y%m%d%H%M%S` Value of $UpGradeImageName_File : `cat $UpGradeImageName_File` does NOT match Regular Expression ."
+ #fi
  echo "`date +%Y%m%d%H%M%S` Preparing to Continue with Other Configurations. Wait for $UpGrade_ShortWait_Period ."
  sync
  sleep $UpGrade_ShortWait_Period
