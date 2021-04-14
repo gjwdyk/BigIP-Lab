@@ -2262,7 +2262,7 @@
            "adminUsername='admin'\n",
            "timezone='", { "Ref": "TimeZone" }, "'\n",
            "ntpServer='", { "Ref": "NTPServer" }, "'\n",
-           "declarationUrl='", { "Fn::If": [ "UseAS3File", { "Ref": "AS3URL" }, "none" ] }, "'\n",
+           "declarationUrl='", { "Fn::If": [ "DownLoadImage", { "Fn::If": [ "UseAS3File", { "Ref": "AS3URL" }, "none" ] }, "none" ] }, "'\n",
            "AllowPhoneHome='", { "Ref": "AllowPhoneHome" }, "'\n",
            "passwd=$(f5-rest-node /config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/decryptDataFromFile.js --data-file /config/cloud/aws/.adminPassword)\n",
            "managementGuiPort='443'\n",
@@ -2270,6 +2270,7 @@
            "UpGradeVolume_File='/config/UpgradeVolume'\n",
            "UpGradeVolume_Value='HD1.9'\n",
            "UpgradeBigIP='", { "Ref": "UpgradeBigIP" }, "'\n",
+           "DeclarationURLPost='", { "Fn::If": [ "DownLoadImage", "none", { "Fn::If": [ "UseAS3File", { "Ref": "AS3URL" }, "none" ] } ] }, "'\n",
 
            "#\n"
           ]
@@ -2599,15 +2600,35 @@
         "mode": "000666",
         "owner": "root"
        },
-       "/config/TMSHCommands.sh": {
+       "/config/TMSHPreCommands.sh": {
         "group": "root",
         "mode": "000777",
         "owner": "root",
         "source": {
          "Fn::If": [
-          "UseTMSHCommandsFile",
-          { "Ref": "BigIPTMSHConfiguration" },
+          "DownLoadImage",
+          { "Fn::If": [
+            "UseTMSHCommandsFile",
+            { "Ref": "BigIPTMSHConfiguration" },
+            "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh"
+          ] },
           "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh"
+         ]
+        }
+       },
+       "/config/TMSHPostCommands.sh": {
+        "group": "root",
+        "mode": "000777",
+        "owner": "root",
+        "source": {
+         "Fn::If": [
+          "DownLoadImage",
+          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh",
+          { "Fn::If": [
+            "UseTMSHCommandsFile",
+            { "Ref": "BigIPTMSHConfiguration" },
+            "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/EmptyTMSHConfiguration.sh"
+          ] }
          ]
         }
        },

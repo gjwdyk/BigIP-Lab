@@ -87,6 +87,14 @@ if ( tmsh show sys software | grep `cat $UpGradeVolume_File` | grep "complete" )
   fi
  done
 
+ echo "Upgrade Big-IP : $UpgradeBigIP"
+ if [[ $UpgradeBigIP == "No" ]]; then
+  echo "Skip Pre-UpGrade TMSH Commands"
+ else
+  /bin/sudo /bin/bash /config/AS3Configuration.sh
+  /bin/sudo /bin/bash /config/TMSHPostCommands.sh
+ fi
+
 
 
 else
@@ -145,7 +153,12 @@ else
   fi
  done
 
- /bin/sudo /bin/bash /config/TMSHCommands.sh
+ echo "Upgrade Big-IP : $UpgradeBigIP"
+ if [[ $UpgradeBigIP == "No" ]]; then
+  /bin/sudo /bin/bash /config/TMSHPreCommands.sh
+ else
+  echo "Skip Pre-UpGrade TMSH Commands"
+ fi
 
  echo "`date +%Y%m%d%H%M%S` UpGrade Process ."
  if [ -f /shared/images/UpgradeImage.iso ] && [ -f /shared/images/UpgradeImage.iso.md5 ] && [[ `cat $UpGradeImageName_File` =~ ^(BIGIP\-)((([0-9]+)\.)+)([0-9]+)\-((([0-9]+)\.)+)([0-9]+)\.iso$ ]]; then
