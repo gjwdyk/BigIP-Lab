@@ -248,7 +248,15 @@
        "BigIPModules",
        "BigIPAdminPassword",
        "BigIPTrafficTLSKey",
-       "BigIPTrafficTLSCertificate",
+       "BigIPTrafficTLSCertificate"
+      ]
+     },
+     {},
+     {
+      "Label": {
+       "default": "Big-IP Configuration Method/File"
+      },
+      "Parameters": [
        "ConfigurationMethod",
        "AS3URL",
        "BigIPTMSHConfiguration"

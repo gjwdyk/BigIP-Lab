@@ -1,0 +1,89 @@
+Stack name
+Stack name
+Enter a stack name
+Stack name can include letters (A-Z and a-z), numbers (0-9), and dashes (-).
+Parameters
+Parameters are defined in your template and allow you to input custom values when you create or update a stack.
+Name Tags Parameters
+PreFix for Name Tags
+Prefix to be given to all possible resources created by this stack-template.
+CF
+Common CloudFormation Parameters
+Big-IP Image ID
+Provide a valid AMI ID of Big-IP in the AWS Region. AWS Region Code for Singapore is : ap-southeast-1
+ami-071c2bc10872531f5
+Big-IP Instance Type
+Provide a valid Instance Type for the Big-IP.
+m5.xlarge
+LAMP Server Image ID
+Provide a valid AMI ID of LAMP Server in the AWS Region.
+ami-0df2622d7d4612d77
+LAMP Server Instance Type
+Provide a valid Instance Type for the LAMP Server.
+t2.medium
+Windows Server Image ID
+Provide a valid AMI ID of Windows Server in the AWS Region.
+ami-0eab3f51c4d3dd225
+Windows Server Instance Type
+Provide a valid Instance Type for the Windows Server.
+t2.medium
+EC2 SSH Key-Pair
+EC2 KeyPair to enable SSH access to the EC2 instances, including the Big-IP. Select the SSH KeyPair you have access to.
+NTP Server used by Big-IP
+NTP server for this implementation
+0.pool.ntp.org
+Time Zone setting used by Big-IP
+Enter the Olson timezone string from /usr/share/zoneinfo. The default is 'UTC'. See the TZ column here (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid optional values. For example, 'US/Eastern'.
+Asia/Singapore
+Big-IP Specific Parameters
+Big-IP Registration Key License
+Big-IP Registration Key License. Format : AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE --add-on FFFFFFF-GGGGGGG --add-on HHHHHHH-IIIIIII ; or simply : AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE if there is no Add-On module.
+Big-IP Modules to be Provisioned
+Comma separated list of modules and levels to provision, for example: ltm:nominal,avr:nominal,asm:nominal,apm:nominal . Provisionable modules are: afm, am, apm, asm, avr, cgnat, dos, fps, gtm, ilx, lc, ltm, pem, sslo, swg, urldb .
+ltm:nominal,avr:nominal,gtm:nominal,afm:nominal,asm:nominal,fps:nominal,apm:nominal
+Big-IP's Admin Password
+Password for the Admin User of Big-IP.
+URL of the Private Key (of the SSL/TLS Certificate)
+URL of the Private Key used to create the below TLS Certificate. This CloudFormation template requires the TLS Private Key and Certificate (i.e. Mandatory Input). If the Private Key is located at AWS S3, ensure that this CloudFormation template can read the file. If the Private Key is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file).
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Certificates/aadc.link.rsa.key
+URL of the SSL/TLS Certificate
+URL of the TLS Certificate which Big-IP will use to encrypt or decrypt the requests and responses between users and servers. This CloudFormation template requires the TLS Private Key and Certificate (i.e. Mandatory Input). If the Private Key is located at AWS S3, ensure that this CloudFormation template can read the file. If the Private Key is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file).
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Certificates/aadc.link.rsa.crt
+Big-IP Configuration Method/File
+Select the Method to Configure Big-IP
+Select the method to configure the Big-IP. Note that between AS3 and TMSH there are possibilities for conflicts, and therefore both AS3 File and TMSH Commands File need to be sync-ed between each other.
+AS3 Declaration URL
+URL for the AS3 declaration JSON file to be deployed. Input *none* (without the *) to deploy without a service configuration.
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/AS3/AS3_LTM_SSLoL_AVR_NOutB.json
+URL of the Big-IP TMSH Commands File
+URL of the TMSH Commands File which Big-IP will execute. If the TMSH Commands File is located at AWS S3, ensure that this CloudFormation template can read the file. If the TMSH Commands File is located at GitHub, ensure that this CloudFormation template can read the RAW file (i.e. not a web page containing the file).
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/TMSH/F5_Configurations.sh
+Big-IP Notification Parameters
+URL of the SSMTP Configuration File
+URL of the SSMTP configuration. This CloudFormation template requires a SSMTP configuration (i.e. Mandatory Input). If the SSMTP configuration is located at AWS S3, ensure that this CloudFormation template can read the file. If the SSMTP configuration is located at GitHub, ensure that this CloudFormation template can read the RAW SSMTP configuration file (i.e. NOT a web page containing the SSMTP configuration file).
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/GMailSSMTP.conf
+User ID to access the SMTP Server
+User ID used to access to the SMTP Server, for sending the notification. Big-IP uses this account to send notification to the recipient.
+Password of the User ID
+Password for the User ID to access the SMTP Server.
+Big-IP Notification Recipient's eMail Address
+The Recipient's eMail Address of the Big-IP Notification messages.
+URL of the additional user_alert configuration
+URL of the additional user_alert configuration.
+https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/user_alert.archive
+Big-IP Upgrade Parameters
+Upgrade Big-IP ?
+Whether the Big-IP should be Upgraded automatically. If you select **Yes** the Big-IP will be Upgraded, and therefore the corresponding new image URL Path and File Name should be provided. Additional time is also needed for the Upgrade process.
+Upgrade Image's URL Path, of the .iso file used to upgrade the Big-IP image
+URL Path of the upgrade .iso image. Keep the last / character.
+https://aws-f5-singapore-hc-demo-bucket-files.s3-ap-southeast-1.amazonaws.com/Big-IP/16.0.1/
+Upgrade Image's File Name, of the .iso file used to upgrade the Big-IP image
+File Name of the upgrade .iso image.
+BIGIP-16.0.1.1-0.0.6.iso
+F5 Big-IP Statistics Collection Parameters
+Send Anonymous Device Statistics to F5
+This deployment can send anonymous device statistics to F5 to help us determine how to improve our solutions. If you select **No** statistics are not sent.
+Lorem Ipsum Dolor Sit Amet
+Lorem Ipsum Dolor Sit Amet
+Lorem Ipsum Dolor Sit Amet string. Proposed format are Lorem\nIpsum\nDolor\nSit\nAmet. Leave the field as it is for default.
+••••
