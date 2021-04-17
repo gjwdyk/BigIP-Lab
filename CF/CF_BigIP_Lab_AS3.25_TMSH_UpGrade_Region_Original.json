@@ -2126,11 +2126,23 @@
            "GATEWAY_PREFIX_0=${GATEWAY_CIDR_BLOCK_0#*/}; ",
            "GATEWAY_0=`echo ${GATEWAY_NET_0} | awk -F. '{ print $1\".\"$2\".\"$3\".\"$4+1 }'`; ",
 
+           "echo \"GATEWAY 0 : ${GATEWAY_0}\"; ",
+           "echo \"GATEWAY MAC 0 : ${GATEWAY_MAC_0}\"; ",
+           "echo \"GATEWAY NET 0 : ${GATEWAY_NET_0}\"; ",
+           "echo \"GATEWAY PREFIX 0 : ${GATEWAY_PREFIX_0}\"; ",
+           "echo \"GATEWAY CIDR BLOCK 0 : ${GATEWAY_CIDR_BLOCK_0}\"; ",
+
            "GATEWAY_MAC_1=`ifconfig eth1 | egrep ether | awk '{print tolower($2)}'`; ",
            "GATEWAY_CIDR_BLOCK_1=`/usr/bin/curl -s -f --retry 22 http://169.254.169.254/latest/meta-data/network/interfaces/macs/${GATEWAY_MAC_1}/subnet-ipv4-cidr-block`; ",
            "GATEWAY_NET_1=${GATEWAY_CIDR_BLOCK_1%/*}; ",
            "GATEWAY_PREFIX_1=${GATEWAY_CIDR_BLOCK_1#*/}; ",
            "GATEWAY_1=`echo ${GATEWAY_NET_1} | awk -F. '{ print $1\".\"$2\".\"$3\".\"$4+1 }'`; ",
+
+           "echo \"GATEWAY 1 : ${GATEWAY_1}\"; ",
+           "echo \"GATEWAY MAC 1 : ${GATEWAY_MAC_1}\"; ",
+           "echo \"GATEWAY NET 1 : ${GATEWAY_NET_1}\"; ",
+           "echo \"GATEWAY PREFIX 1 : ${GATEWAY_PREFIX_1}\"; ",
+           "echo \"GATEWAY CIDR BLOCK 1 : ${GATEWAY_CIDR_BLOCK_1}\"; ",
 
            "GATEWAY_MAC_2=`ifconfig eth2 | egrep ether | awk '{print tolower($2)}'`; ",
            "GATEWAY_CIDR_BLOCK_2=`/usr/bin/curl -s -f --retry 22 http://169.254.169.254/latest/meta-data/network/interfaces/macs/${GATEWAY_MAC_2}/subnet-ipv4-cidr-block`; ",
@@ -2138,11 +2150,23 @@
            "GATEWAY_PREFIX_2=${GATEWAY_CIDR_BLOCK_2#*/}; ",
            "GATEWAY_2=`echo ${GATEWAY_NET_2} | awk -F. '{ print $1\".\"$2\".\"$3\".\"$4+1 }'`; ",
 
+           "echo \"GATEWAY 2 : ${GATEWAY_2}\"; ",
+           "echo \"GATEWAY MAC 2 : ${GATEWAY_MAC_2}\"; ",
+           "echo \"GATEWAY NET 2 : ${GATEWAY_NET_2}\"; ",
+           "echo \"GATEWAY PREFIX 2 : ${GATEWAY_PREFIX_2}\"; ",
+           "echo \"GATEWAY CIDR BLOCK 2 : ${GATEWAY_CIDR_BLOCK_2}\"; ",
+
            "GATEWAY_MAC_3=`ifconfig eth3 | egrep ether | awk '{print tolower($2)}'`; ",
            "GATEWAY_CIDR_BLOCK_3=`/usr/bin/curl -s -f --retry 22 http://169.254.169.254/latest/meta-data/network/interfaces/macs/${GATEWAY_MAC_3}/subnet-ipv4-cidr-block`; ",
            "GATEWAY_NET_3=${GATEWAY_CIDR_BLOCK_3%/*}; ",
            "GATEWAY_PREFIX_3=${GATEWAY_CIDR_BLOCK_3#*/}; ",
            "GATEWAY_3=`echo ${GATEWAY_NET_3} | awk -F. '{ print $1\".\"$2\".\"$3\".\"$4+1 }'`; ",
+
+           "echo \"GATEWAY 3 : ${GATEWAY_3}\"; ",
+           "echo \"GATEWAY MAC 3 : ${GATEWAY_MAC_3}\"; ",
+           "echo \"GATEWAY NET 3 : ${GATEWAY_NET_3}\"; ",
+           "echo \"GATEWAY PREFIX 3 : ${GATEWAY_PREFIX_3}\"; ",
+           "echo \"GATEWAY CIDR BLOCK 3 : ${GATEWAY_CIDR_BLOCK_3}\"; ",
 
            "nohup /config/waitThenRun.sh ",
            "f5-rest-node /config/cloud/aws/node_modules/@f5devcentral/f5-cloud-libs/scripts/network.js ",
@@ -2366,7 +2390,7 @@
           [
            "INTERFACE=$1",
            "INTERFACE_MAC=`ifconfig ${INTERFACE} | egrep ether | awk '{print tolower($2)}'`",
-           "VPC_CIDR_BLOCK=`/usr/bin/curl -s -f --retry 20 http://169.254.169.254/latest/meta-data/network/interfaces/macs/${INTERFACE_MAC}/vpc-ipv4-cidr-block`",
+           "VPC_CIDR_BLOCK=`/usr/bin/curl -s -f --retry 22 http://169.254.169.254/latest/meta-data/network/interfaces/macs/${INTERFACE_MAC}/vpc-ipv4-cidr-block`",
            "VPC_NET=${VPC_CIDR_BLOCK%/*}",
            "NAME_SERVER=`echo ${VPC_NET} | awk -F. '{ printf \"%d.%d.%d.%d\", $1, $2, $3, $4+2 }'`",
            "echo $NAME_SERVER"
