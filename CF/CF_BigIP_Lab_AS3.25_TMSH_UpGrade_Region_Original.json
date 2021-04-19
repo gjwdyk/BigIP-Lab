@@ -2459,6 +2459,38 @@
 
            "echo \"HC's Mark --------->>>>>>>>> After Authentication Removed ; Additional Custom Configuration can be Applied.\"\n",
 
+           "isomd5_downloaded=\"no\"\n",
+           "isomd5_urlregex=\"(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$\"\n",
+           "isomd5_filename=\"/shared/images/UpgradeImage.iso.md5\"\n",
+           "isomd5_URL=\"", { "Fn::If": [ "DownLoadImage", "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso.md5", { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" }, ".md5" ] ] } ] }, "\"\n",
+           "if [[ $isomd5_URL =~ $isomd5_urlregex ]] ; then\n",
+           "  response_code=$(/usr/bin/curl -sk -w \"%{http_code}\" $isomd5_URL -o $isomd5_filename)\n",
+           "  if [[ $response_code == 200 ]]; then\n",
+           "    isomd5_downloaded=\"yes\"\n",
+           "    echo \".iso.md5 download complete.\"\n",
+           "  else\n",
+           "    echo \"Failed to download .iso.md5 ; continuing . . .\"\n",
+           "  fi\n",
+           "else\n",
+           "  echo \"Reference to the .iso.md5 was not a URL, continuing . . .\"\n",
+           "fi\n",
+
+           "iso_downloaded=\"no\"\n",
+           "iso_urlregex=\"(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$\"\n",
+           "iso_filename=\"/shared/images/UpgradeImage.iso\"\n",
+           "iso_URL=\"", { "Fn::If": [ "DownLoadImage", "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso", { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" } ] ] } ] }, "\"\n",
+           "if [[ $iso_URL =~ $iso_urlregex ]] ; then\n",
+           "  response_code=$(/usr/bin/curl -sk -w \"%{http_code}\" $iso_URL -o $iso_filename)\n",
+           "  if [[ $response_code == 200 ]]; then\n",
+           "    iso_downloaded=\"yes\"\n",
+           "    echo \".iso download complete.\"\n",
+           "  else\n",
+           "    echo \"Failed to download .iso ; continuing . . .\"\n",
+           "  fi\n",
+           "else\n",
+           "  echo \"Reference to the .iso was not a URL, continuing . . .\"\n",
+           "fi\n",
+
            "\n"
           ]
          ]
@@ -2811,30 +2843,6 @@
         "group": "root",
         "mode": "000666",
         "owner": "root"
-       },
-       "/shared/images/UpgradeImage.iso": {
-        "group": "root",
-        "mode": "000666",
-        "owner": "root",
-        "source": {
-         "Fn::If": [
-          "DownLoadImage",
-          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso",
-          { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" } ] ] }
-         ]
-        }
-       },
-       "/shared/images/UpgradeImage.iso.md5": {
-        "group": "root",
-        "mode": "000666",
-        "owner": "root",
-        "source": {
-         "Fn::If": [
-          "DownLoadImage",
-          "https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/Upgrade/UpgradeImage.iso.md5",
-          { "Fn::Join" : [ "", [ { "Ref": "UpgradeImageURLPath" }, { "Ref": "UpgradeImageFileName" }, ".md5" ] ] }
-         ]
-        }
        },
        "/config/cloud/domain.name.rsa.key": {
         "group": "root",
