@@ -1,0 +1,123 @@
+#!/bin/bash
+
+declare -a file_url
+declare -a file_name
+declare -a file_acl
+declare -a file_result
+
+file_url[0]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/BigIPSendMail"
+file_name[0]="/home/admin/BigIPSendMail"
+file_acl[0]="777"
+
+file_url[1]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/ClearFlags"
+file_name[1]="/home/admin/ClearFlags"
+file_acl[1]="777"
+
+file_url[2]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/RotateLog"
+file_name[2]="/home/admin/RotateLog"
+file_acl[2]="777"
+
+file_url[3]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/BigIPLidsa"
+file_name[3]="/home/admin/BigIPLidsa"
+file_acl[3]="777"
+
+for counter in {0..3}; do
+ echo "${file_url[$counter]}"
+ echo "${file_name[$counter]}"
+ echo "${file_acl[$counter]}"
+ file_result[$counter]=$counter
+done
+
+for counter in {0..3}; do
+ echo "${file_result[$counter]}"
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+declare -a file_url
+declare -a file_name
+declare -a file_acl
+declare -a file_result
+
+file_url[0]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/BigIPSendMail"
+file_name[0]="/home/admin/BigIPSendMail"
+file_acl[0]="777"
+
+file_url[1]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/ClearFlagxs"
+file_name[1]="/home/admin/ClearFlags"
+file_acl[1]="777"
+
+file_url[2]="htps://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/RotateLog"
+file_name[2]="/home/admin/RotateLog"
+file_acl[2]="777"
+
+file_url[3]="https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/lidsa/BigIPLidsa"
+file_name[3]="/home/admin/BigIPLidsa"
+file_acl[3]="777"
+
+max_counter=3
+
+URLRegEx="^(http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+
+for counter in $(seq 0 $max_counter); do
+ if [[ ${file_url[$counter]} =~ $URLRegEx ]] ; then
+  file_result[$counter]=$(/usr/bin/curl -sk -w "%{http_code}" ${file_url[$counter]} -o ${file_name[$counter]})
+  if [[ ${file_result[$counter]} == 200 ]]; then
+   echo "$counter ; HTTP ${file_result[$counter]} ; ${file_name[$counter]} download complete."
+   chmod ${file_acl[$counter]} ${file_name[$counter]}
+  else
+   echo "$counter ; HTTP ${file_result[$counter]} ; Failed to download ${file_name[$counter]} ; Continuing . . ."
+  fi
+ else
+  echo "$counter ; Reference to the ${file_name[$counter]} was not a URL ; Continuing . . ."
+ fi
+done
+
+
+
+
+
+
+
+
+printf "file_url[1]=\"https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/ClearFlagxs\"\n" >> blah
+printf "file_name[1]=\"/home/admin/ClearFlags\"\n" >> blah
+printf "file_acl[1]=\"777\"\n" >> blah
+
+
+
+
+
+
+
+
+
+
+
+
+
+

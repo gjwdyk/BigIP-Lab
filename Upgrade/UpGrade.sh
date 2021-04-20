@@ -6,12 +6,9 @@ source /config/cloud/aws/onboard_config_vars
 DEBUG=ON
 
 Log_File=/var/log/cloud/aws/install.log
-Lidsa_Failed_Flag=/config/lidsa/cae/Lidsa_Failed.flag
-
 UpGradeImageName_File=/config/UpgradeImageFileName
 
 Log_Wait_Period="3m 33s"
-
 UpGrade_ShortWait_Period="22s"
 UpGrade_LongWait_Period="2m 2s"
 
