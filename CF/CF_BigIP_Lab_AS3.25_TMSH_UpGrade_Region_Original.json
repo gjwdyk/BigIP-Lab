@@ -2528,20 +2528,9 @@
 "file_name[15]=\"/shared/images/UpgradeImage.iso\"\n",
 "file_acl[15]=\"666\"\n",
 
+"max_counter=15\n",
 
-"file_url[16]=\"https://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/ClearFlagxs\"\n",
-"file_name[16]=\"/home/admin/ClearFlags\"\n",
-"file_acl[16]=\"777\"\n",
-
-"file_url[17]=\"htps://raw.githubusercontent.com/gjwdyk/BigIP-Lab/master/SSMTP/RotateLog\"\n",
-"file_name[17]=\"/home/admin/RotateLog\"\n",
-"file_acl[17]=\"777\"\n",
-
-
-
-"max_counter=17\n",
-
-"URLRegEx=\"^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$\"\n",
+"URLRegEx=\"^(http:\\/\\/|https:\\/\\/)?[a-z0-9]+((\\-|\\.)[a-z0-9]+)*\\.[a-z]{2,}(:[0-9]{1,5})?(\\/.*)*$\"\n",
 
 "for counter in $(seq 0 $max_counter); do\n",
 " if [[ ${file_url[$counter]} =~ $URLRegEx ]] ; then\n",
