@@ -1,6 +1,8 @@
-How to create Self Signed SSL Certificate with F5, and import the Self Signed SSL Certificate into Browser:
+# How to create Self Signed SSL Certificate with F5, and import the Self Signed SSL Certificate into Browser
 
- 
+
+
+![20190312 Create Self Signed Certificate.png](20190312 Create Self Signed Certificate.png)
 
 Important fields are filled as above, with example of wild-card domain name and the longest possible Lifetime value:
 •	Fill in the “Name” field with the intended/targeted certificate name (or file name when it is exported).
