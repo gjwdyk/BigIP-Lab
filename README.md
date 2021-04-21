@@ -19,7 +19,7 @@ Which can be achieved by re-importing the adapted LAMPv7 and Windows Server 2008
 Once the adapted LAMPv7 and Windows Server 2008 R2 AMIs exist in the targeted AWS Region, the AMI ID of the adapted LAMPv7 and Windows Server 2008 R2 need to be indicated properly (i.e. not using the default value) during execution of the template.
 
 The Big-IP AMI should be available in most (if not ALL) of AWS Regions as part of F5 Networks effort to commercialized usage of the product in AWS.
-Only the correct AMI ID of Big-IP within the targeted AWS Region is needed, which should not be difficult to find.
+Only the correct AMI ID of Big-IP within the targeted AWS Region is needed, which should not be difficult to find. This template already has default values for Big-IP AMI ID in most AWS Regions.
 You will also need a valid F5 Big-IP License to execute the template and having a running Big-IP Instance.
 
 Note that the CloudFormation templates were tested with Big-IP version 15.1.2.1 build 0.0.10.
