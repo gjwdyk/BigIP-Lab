@@ -179,7 +179,7 @@
       "Type": "String",
       "Default": "Default",
       "AllowedPattern": "^([aA][mM][iI]\\-)([0-9a-zA-Z]{8}|[0-9a-zA-Z]{17})$|^Default$",
-      "Description": "Outside AWS Regions of Tokyo, Seoul, Singapore and Hong Kong, a Valid Custom AMI ID of LAMP Server in the Region MUST be Provided. Default Value Will NOT Work."
+      "Description": "Outside AWS Regions of Tokyo, Seoul and Singapore, a Valid Custom AMI ID of LAMP Server in the Region MUST be Provided. Default Value Will NOT Work."
     },
     "LAMPServerInstanceType" : {
       "Type": "String",
@@ -190,7 +190,7 @@
       "Type": "String",
       "Default": "Default",
       "AllowedPattern": "^([aA][mM][iI]\\-)([0-9a-zA-Z]{8}|[0-9a-zA-Z]{17})$|^Default$",
-      "Description": "Outside AWS Regions of Tokyo, Seoul, Singapore and Hong Kong, a Valid Custom AMI ID of Windows Server in the Region MUST be Provided. Default Value Will NOT Work."
+      "Description": "Outside AWS Regions of Tokyo, Seoul and Singapore, a Valid Custom AMI ID of Windows Server in the Region MUST be Provided. Default Value Will NOT Work."
     },
     "WindowsServerInstanceType" : {
       "Type": "String",
