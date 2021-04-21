@@ -42,10 +42,34 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | LAMP Server Instance Type | LAMPServerInstanceType | Mandatory with Default Value | Select an EC2 Instance Type for the LAMP Server instance. Note that instance type also influence the number of network interfaces and IP addresses which can be assigned into the instance. Refer to section [IP addresses per network interface per instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) for more details. Selecting too small instance type may hinder the CloudFormation to work as expected. |
 | Windows Server Image ID | WindowsServerImageID | Mandatory | Input AMI ID for Windows Server 2008 R2 which has been adapted to AWS environment. "Default" value is applicable only on AWS Region Tokyo, Seoul and Singapore. |
 | Windows Server Instance Type | WindowsServerInstanceType | Mandatory with Default Value | Select an EC2 Instance Type for the Windows Server 2008 R2 instance. Note that instance type also influence the number of network interfaces and IP addresses which can be assigned into the instance. Refer to section [IP addresses per network interface per instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) for more details. Selecting too small instance type may hinder the CloudFormation to work as expected. |
-
-
+| EC2 SSH Key-Pair | EC2SSHKeyPair | Optional | This Key-Pair will be used only for Big-IP instance. Select a Key-Pair from the drop-down list of Existing Key-Pairs. If the Key-Pair you want to use is created after you execute this CloudFormation template, it will not be shown. You need to assign/use a Key-Pair, if you'd like to access Big-IP's CLI. |
+| NTP Server used by Big-IP | NTPServer | Mandatory with Default Value | Description |
 
 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=BigIP-Lab&templateURL=https://aws-f5-singapore-hc-demo-bucket-files.s3-ap-southeast-1.amazonaws.com/CF/CF_BigIP_Lab_AS3.25_TMSH_UpGrade_Region.json"><img src="https://github.com/gjwdyk/BigIP-Lab/raw/main/Figures/JigokuShoujoLaunchStack.png" width="140" height="22"/></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
