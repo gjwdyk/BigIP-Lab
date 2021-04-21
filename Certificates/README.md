@@ -1,14 +1,14 @@
-# How to create Self Signed SSL Certificate with F5, and import the Self Signed SSL Certificate into Browser
+# How to create Self Signed SSL Certificate with F5 Big-IP, and import the Self Signed SSL Certificate into Browser
 
 
 
 ![20190312CreateSelfSignedCertificate.png](20190312CreateSelfSignedCertificate.png)
 
 Important fields are filled as above, with example of wild-card domain name and the longest possible Lifetime value:
-•	Fill in the “Name” field with the intended/targeted certificate name (or file name when it is exported).
-•	“Common Name” usually filled with the domain name for which the certificate is made for. Wild-card can be used. Example “*.domain.com”
-•	The largest possible “Lifetime” value is 9489.
-•	Fill in “Subject Alternative Name” with domain name, following the pattern “DNS:*.domain.com” or “DNS:www.example.com, DNS:www.exchange.example.com, DNS:www.example.internal.net”
+- [ ] Fill in the “Name” field with the intended/targeted certificate name (or file name when it is exported).
+- [ ] “Common Name” usually filled with the domain name for which the certificate is made for. Wild-card can be used. Example “*.domain.com”
+- [ ] The largest possible “Lifetime” value is 9489.
+- [ ] Fill in “Subject Alternative Name” with domain name, following the pattern “DNS:*.domain.com” or “DNS:www.example.com, DNS:www.exchange.example.com, DNS:www.example.internal.net”
 Further reference can be viewed at https://support.f5.com/csp/article/K13471 .
 
 
