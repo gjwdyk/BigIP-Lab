@@ -45,7 +45,16 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | EC2 SSH Key-Pair | EC2SSHKeyPair | Optional | This Key-Pair will be used only for Big-IP instance. Select a Key-Pair from the drop-down list of Existing Key-Pairs. If the Key-Pair you want to use is created after you execute/launch this CloudFormation template (example: on separate browser's tab you created a new Key-Pair after you execute/launch this CloudFormation template), the new Key-Pair will not be shown. You need to assign/use a Key-Pair if you'd like to access Big-IP's CLI. |
 | NTP Server used by Big-IP | NTPServer | Mandatory with Default Value | Input a NTP Server's DNS Name or IP Address. The NTP Server will be used by Big-IP instance only. |
 | Time Zone setting used by Big-IP | TimeZone | Mandatory with Default Value | The TimeZone information will be used only by Big-IP instance. Select/Input the Olson time zone string. Refer to the ["TZ Database Name" column](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid optional values. |
-| Big-IP Registration Key License | BigIPRegistrationKeyLicense | Mandatory | This CloudFormation template uses BYOL version (Bring Your Own License) of Big-IP AMI IDs; therefore it is Mandatory to supply the CloudFormation template with a valid Big-IP Registration Key License. Target usage of this CloudFormation template is with Evaluation Registration Key Licenses; although other types of Registration Key Licenses are also fine. If you want to use one or more "Add-On Module" licenses, you can do it with the following format/syntax:<br>`AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE --add-on FFFFFFF-GGGGGGG --add-on HHHHHHH-IIIIIII`. |
+| Big-IP Registration Key License | BigIPRegistrationKeyLicense | Mandatory | This CloudFormation template uses BYOL version (Bring Your Own License) of Big-IP AMI IDs; therefore it is Mandatory to supply the CloudFormation template with a valid Big-IP Registration Key License. Target usage of this CloudFormation template is with Evaluation Registration Key Licenses; although other types of Registration Key Licenses are also fine. If you want to use one or more "Add-On Module" licenses, you can do it with the following format/syntax:<br>`AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE --add-on FFFFFFF-GGGGGGG --add-on HHHHHHH-IIIIIII` .<br>Otherwise, if you don't have any "Add-On Module" license, just input the Base Registration Key License:<br>`AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE` . |
+| Big-IP Modules to be Provisioned | BigIPModules | Mandatory | This Parameter is used by the CloudFormation template to provision the Big-IP Software Modules which you need to Activate. You list down the Big-IP Software Modules in a comma separated syntax as example:<br>`ltm:nominal,avr:nominal,gtm:nominal` .<br>Ensure you sync the provisioned modules with the configurations which you sent to the Big-IP to execute (i.e. the AS3 or TMSH Commands file). Provisionable modules are:<br>`afm`, `am`, `apm`, `asm`, `avr`, `cgnat`, `dos`, `fps`, `gtm`, `ilx`, `lc`, `ltm`, `pem`, `sslo`, `swg`, `urldb` . |
+
+
+
+
+
+
+
+
 
 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=BigIP-Lab&templateURL=https://aws-f5-singapore-hc-demo-bucket-files.s3-ap-southeast-1.amazonaws.com/CF/CF_BigIP_Lab_AS3.25_TMSH_UpGrade_Region.json"><img src="https://github.com/gjwdyk/BigIP-Lab/raw/main/Figures/JigokuShoujoLaunchStack.png" width="140" height="22"/></a>
