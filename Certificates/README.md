@@ -2,7 +2,7 @@
 
 
 
-![20190312 Create Self Signed Certificate.png](20190312 Create Self Signed Certificate.png)
+![20190312CreateSelfSignedCertificate.png](20190312CreateSelfSignedCertificate.png)
 
 Important fields are filled as above, with example of wild-card domain name and the longest possible Lifetime value:
 •	Fill in the “Name” field with the intended/targeted certificate name (or file name when it is exported).
