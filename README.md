@@ -24,7 +24,12 @@ You will also need a valid F5 Big-IP License to execute the template and having 
 
 Note that the CloudFormation templates were tested with Big-IP version 15.1.2.1 build 0.0.10.
 
-This CloudFormation template is designed for building Demo/Testing environment only. It was NOT designed to be used for Live/Commercial environment!
+This CloudFormation template is designed for building Demo/Testing environment only. It was NOT designed to be used for Live/Commercial environment !!!
+
+
+
+
+
 
 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=BigIP-Lab&templateURL=https://aws-f5-singapore-hc-demo-bucket-files.s3-ap-southeast-1.amazonaws.com/CF/CF_BigIP_Lab_AS3.25_TMSH_UpGrade_Region.json"><img src="https://github.com/gjwdyk/BigIP-Lab/raw/main/Figures/JigokuShoujoLaunchStack.png" width="140" height="22"/></a>
