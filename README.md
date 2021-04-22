@@ -50,7 +50,7 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | Big-IP's Admin Password | BigIPAdminPassword | Mandatory | Enter the Password for `admin` user, which you will need to login to Big-IP's Web-Based Configuration Utility/Interface. |
 | URL of the Private Key (of the SSL/TLS Certificate) | BigIPTrafficTLSKey | Mandatory with Default Value | Input a URL to a Private Key file part of SSL/TLS Certificate in Privacy Enhanced Mail (PEM) format. The sample value points to a Self Signed Key which may not be a good option to use. Refer to [Certificates](Certificates\/README.md) for more detail in creating your own Self Sign Key and Certificate. |
 | URL of the SSL/TLS Certificate | BigIPTrafficTLSCertificate | Mandatory with Default Value | Input a URL to a SSL/TLS Certificate file part of SSL/TLS Certificate in Privacy Enhanced Mail (PEM) format. The sample value points to a Self Signed Certificate which may not be a good option to use. Refer to [Certificates](Certificates\/README.md) for more detail in creating your own Self Sign Key and Certificate. |
-| CFT Label | Parameter Name | Required | Description |
+| Big-IP Configuration Method/File | ConfigurationMethod | Mandatory with Default Value | This Parameter specify how you are going to configure the Big-IP instance. At the moment the options are : `None`, `AS3`, `TMSH` and `AS3 and TMSH` . |
 | CFT Label | Parameter Name | Required | Description |
 
 
