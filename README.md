@@ -56,7 +56,7 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | URL of the SSMTP Configuration File | SSMTPConfiguration | Mandatory | Input a URL to a `ssmtp.conf` file. The `ssmtp.conf` file shall contain all SSMTP configuration except credential information i.e. `AuthUser` and `AuthPass` fields to be excluded out from `ssmtp.conf` file. The `AuthUser` and `AuthPass` fields will be delivered separately in this CloudFormation as SMTPUserID and SMTPUserPassword parameters). Reference: [Configuring SSMTP to Send Locally Generated eMail Messages Through the ssmtp.conf File](https://support.f5.com/csp/article/K13180). |
 | User ID to access the SMTP Server | SMTPUserID | Mandatory | Input the User ID needed to access the SMTP Server, to send Notification eMails the recipient. |
 | Password of the User ID | SMTPUserPassword | Mandatory | Input the Password needed to access the SMTP Server, to send Notification eMails the recipient. |
-| CFT Label | Parameter Name | Required | Description |
+| Big-IP Notification Recipient's eMail Address | eMailNotificationRecipient | Mandatory | Description |
 | CFT Label | Parameter Name | Required | Description |
 | CFT Label | Parameter Name | Required | Description |
 
