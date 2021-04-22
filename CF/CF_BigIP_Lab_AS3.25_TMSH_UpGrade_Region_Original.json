@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Default values within this AWS CloudFormation Template is valid only for AWS Region **Singapore**. **WARNING** This template creates a new VPC and all necessary AWS Resources including EC2 Instances to perform a Demo/Test environment. You will be billed by AWS for the AWS Resources used if you create a stack from this template.",
+  "Description": "Default values within this AWS CloudFormation Template are valid only for AWS Region Tokyo, Seoul and Singapore. **WARNING** This template creates a new VPC and all necessary AWS Resources including EC2 Instances. You will be billed by AWS for the AWS Resources used if you create a stack from this template.",
   "Mappings": {
     "SubnetConfig": {
       "VPC": {
@@ -208,7 +208,7 @@
     },
     "TimeZone": {
       "Default": "Asia/Singapore",
-      "AllowedValues": [ "Asia/Singapore", "Asia/Tokyo", "Asia/Seoul", "Asia/Hong_Kong" ],
+      "AllowedValues": [ "Asia/Singapore", "Asia/Tokyo", "Asia/Seoul" ],
       "Description": "Enter the Olson timezone string from /usr/share/zoneinfo. The default is 'UTC'. See the TZ column here (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid optional values. For example, 'US/Eastern'.",
       "Type": "String"
     },
