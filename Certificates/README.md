@@ -12,23 +12,19 @@ Important fields are filled as above, with example of wild-card domain name and 
 
 Further reference can be viewed at https://support.f5.com/csp/article/K13471 .
 
-
-
-
-
 Below is a sample result, which can be exported, and in turn can be imported into Browser.
 
- 
+![20190312SelfSignedCertificate.png](20190312SelfSignedCertificate.png)
 
 To export the Self Signed SSL Certificate, click the “Export...” button.
 
- 
+![20190312ExportSelfSignedSSLCertificate.png](20190312ExportSelfSignedSSLCertificate.png)
 
 Then click the “Download [Self Signed SSL Certificate Name].crt” button, and safe the Self Signed SSL Certificate file.
 
 To import into Windows based Browser; import the certificate into “Trusted Root Certification Authorities” store/category.
 
- 
+![20190312ImportedSelfSignedCertificate.png](20190312ImportedSelfSignedCertificate.png)
 
 Import can be done by importing the Self Signed SSL Certificate through Internet Explorer Browser. Sample steps described below:
 
@@ -38,15 +34,13 @@ Alternatively, import can be done by Right-Click the Certificate file in the Win
 
 Microsoft Windows’ Internet Explorer Browser and Google’s Chrome Browser should work fine without warning. Mozilla’s Firefox Browser won’t work with the Self Signed SSL Certificates.
 
-
-
 Create Client SSL Profile:
 
- 
+![20190313ClientSSLProfile.png](20190313ClientSSLProfile.png)
 
 Important field is the “Certificate Key Chain”. Click “Add” then Dialog Box as below appear:
 
- 
+![20190313ClientSSLProfileAddCertificateKeyChain.png](20190313ClientSSLProfileAddCertificateKeyChain.png)
 
 In “Certificate” and “Key” fields, choose the Self Signed SSL Certificate; while on the “Chain” field choose the “ca-bundle” from F5. “Passphrase” field is optional. Click “Add” to finish.
 
