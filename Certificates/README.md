@@ -8,9 +8,7 @@ Important fields are filled as above, with example of wild-card domain name and 
 - [ ] Fill in the “Name” field with the intended/targeted certificate name (or file name when it is exported).
 - [ ] “Common Name” usually filled with the domain name for which the certificate is made for. Wild-card can be used. Example `*.domain.com` .
 - [ ] The largest possible “Lifetime” value is 9489 .
-- [ ] Fill in “Subject Alternative Name” with domain name, following the pattern `DNS:*.domain.com` or `DNS:www.example.com, DNS:www.exchange.example.com, DNS:www.example.internal.net` .
-
-Further reference can be viewed at https://support.f5.com/csp/article/K13471 .
+- [ ] Fill in “Subject Alternative Name” with domain name, following the pattern `DNS:*.domain.com` or `DNS:www.example.com, DNS:www.exchange.example.com, DNS:www.example.internal.net` . Further reference can be viewed at [Creating SSL SAN certificates and CSRs using the Configuration utility or tmsh](https://support.f5.com/csp/article/K13471) .
 
 Below is a sample result, which can be exported, and in turn can be imported into Browser.
 
@@ -46,6 +44,18 @@ In “Certificate” and “Key” fields, choose the Self Signed SSL Certificat
 
 Use the built Client SSL Profile on the Virtual Server which will handle traffic from the Client on which the same Self Signed SSL Certificate is imported.
 
+***
+
+Reference [Creating SSL certificates and keys with OpenSSL](https://support.f5.com/csp/article/K14534) describes an alternative way to using Big-IP Configuration Utility to create the SSL Certificate and Private Key.
+
+<br><br><br>
+```
+╔═╦═════════════════╦═╗
+╠═╬═════════════════╬═╣
+║ ║ End of Document ║ ║
+╠═╬═════════════════╬═╣
+╚═╩═════════════════╩═╝
+```
+<br><br><br>
 
 
-End of Document
