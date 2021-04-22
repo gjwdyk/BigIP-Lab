@@ -55,9 +55,9 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | URL of the Big-IP TMSH Commands File | BigIPTMSHConfiguration | Optional with Default Value | Input a URL to a TMSH Commands file. If you choose `TMSH` or `AS3 and TMSH` on ConfigurationMethod, it is mandatory to supply a valid URL pointing to a valid TMSH Commands file. Refer to [TMSH](TMSH\/README.md) for more samples and information of TMSH Commands file. |
 | URL of the SSMTP Configuration File | SSMTPConfiguration | Mandatory with Default Value | Input a URL to a `ssmtp.conf` file. The `ssmtp.conf` file shall contain all SSMTP configuration except credential information i.e. `AuthUser` and `AuthPass` fields to be excluded out from `ssmtp.conf` file. The `AuthUser` and `AuthPass` fields will be delivered separately in this CloudFormation as SMTPUserID and SMTPUserPassword parameters). Reference: [Configuring SSMTP to Send Locally Generated eMail Messages Through the ssmtp.conf File](https://support.f5.com/csp/article/K13180). The sample `ssmtp.conf` file were configured for Google's SMTP Server. |
 | User ID to access the SMTP Server | SMTPUserID | Mandatory | Input the User ID needed to access the SMTP Server, to send Notification eMails to the recipient. |
-| Password of the User ID | SMTPUserPassword | Mandatory | Input the Password needed to access the SMTP Server, to send Notification eMails to the recipient. |
+| Password of the User ID | SMTPUserPassword | Mandatory | Input the Password needed to access the SMTP Server, to send Notification eMails to the recipient. Note that some SMTP Servers will not allow unrecognized client (in this case including Big-IP) to be able to login to the SMTP Server. Allowing UnSecure Applications most of the times are not working. You need to create/establish Application Password and supply the Application Password in this field as the input. |
 | Big-IP Notification Recipient's eMail Address | eMailNotificationRecipient | Mandatory | Input the recipient's eMail Address for the Big-IP Notification messages. |
-| URL of the additional user_alert configuration | UserAlertConfiguration | Required | Description |
+| URL of the additional user_alert configuration | UserAlertConfiguration | Mandatory with Default Value | Description |
 | CFT Label | Parameter Name | Required | Description |
 
 
