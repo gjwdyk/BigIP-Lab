@@ -30,7 +30,7 @@ Menu “Tools”, Sub Menu “Internet Options”, Tab “Content”, Button “
 
 Alternatively, import can be done by Right-Click the Certificate file in the Windows Explorer, and select the Sub Menu “Install Certificate”, Click “Next >” Button, Ensure the Certificate will be imported into “Trusted Root Certification Authorities” by selecting Radio Button “Place all certificates in the following store” and Click “Browse...” Button, and choose “Trusted Root Certification Authorities” from the available stores/categories and click “OK” Button, Ensure the selection is OK before clicking “Next >” Button, Click “Finish” Button, and confirm when the system try to reconfirm the import.
 
-Microsoft Windows’ Internet Explorer Browser and Google’s Chrome Browser should work fine without warning. Mozilla’s Firefox Browser won’t work with the Self Signed SSL Certificates.
+Microsoft Windows’ Internet Explorer Browser and Google’s Chrome Browser should work fine without warning. Mozilla’s Firefox Browser won’t work fine with the Self Signed SSL Certificates.
 
 Create Client SSL Profile:
 
@@ -46,7 +46,7 @@ Use the built Client SSL Profile on the Virtual Server which will handle traffic
 
 ***
 
-Reference [Creating SSL certificates and keys with OpenSSL](https://support.f5.com/csp/article/K14534) describes an alternative way to using Big-IP Configuration Utility to create the SSL Certificate and Private Key.
+Reference [Creating SSL certificates and keys with OpenSSL](https://support.f5.com/csp/article/K14534) describes an alternative way to create the SSL Certificate and Private Key.
 
 <br><br><br>
 ```

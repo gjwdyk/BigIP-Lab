@@ -49,10 +49,9 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | Big-IP Modules to be Provisioned | BigIPModules | Mandatory | This Parameter is used by the CloudFormation template to provision the Big-IP Software Modules which you need to Activate. You list down the Big-IP Software Modules in a comma separated syntax as example:<br>`ltm:nominal,avr:nominal,gtm:nominal` .<br>Ensure you sync the provisioned modules with the configurations which you sent to the Big-IP to execute (i.e. the AS3 or TMSH Commands file). Provisionable modules are:<br>`afm`, `am`, `apm`, `asm`, `avr`, `cgnat`, `dos`, `fps`, `gtm`, `ilx`, `lc`, `ltm`, `pem`, `sslo`, `swg`, `urldb` . |
 | Big-IP's Admin Password | BigIPAdminPassword | Mandatory | Enter the Password for `admin` user, which you will need to login to Big-IP's Web-Based Configuration Utility/Interface. |
 | URL of the Private Key (of the SSL/TLS Certificate) | BigIPTrafficTLSKey | Mandatory with Default Value | Description |
-
-
-
-
+| CFT Label | Parameter Name | Required | Description |
+| CFT Label | Parameter Name | Required | Description |
+| CFT Label | Parameter Name | Required | Description |
 
 
 
