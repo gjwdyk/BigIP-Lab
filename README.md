@@ -57,7 +57,7 @@ After clicking the "Launch Stack" button above, you need to specify input parame
 | User ID to access the SMTP Server | SMTPUserID | Mandatory | Input the User ID needed to access the SMTP Server, to send Notification eMails to the recipient. |
 | Password of the User ID | SMTPUserPassword | Mandatory | Input the Password needed to access the SMTP Server, to send Notification eMails to the recipient. Note that some SMTP Servers will not allow unrecognized client (in this case including Big-IP) to be able to login to the SMTP Server. Allowing UnSecure Applications most of the times are not working. You need to create/establish Application Password and supply the Application Password in this field as the input. |
 | Big-IP Notification Recipient's eMail Address | eMailNotificationRecipient | Mandatory | Input the recipient's eMail Address for the Big-IP Notification messages. |
-| URL of the additional user_alert configuration | UserAlertConfiguration | Mandatory with Default Value | Description |
+| URL of the additional user_alert configuration | UserAlertConfiguration | Mandatory with Default Value | URL pointing to additional configuration lines to be added into the `user_alert.conf` file. |
 | CFT Label | Parameter Name | Required | Description |
 
 
