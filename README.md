@@ -2,7 +2,7 @@
 
 
 
-The target goal of this repository is to automate the creation of F5 Lab environment (as found in vLab section under https://downloads.f5.com/) in AWS using CloudFormation template.
+The target goal of this repository is to automate the creation of F5 Lab environment (as found in vLab section under [F5 Networks' Download Site](https://downloads.f5.com/)) in AWS using CloudFormation template.
 
 The diagram below depicts the Logical Network Diagram built by the CloudFormation templates in this repository.
 ![Logical Network Diagram](Figures/LogicalNetworkDiagram.png)
