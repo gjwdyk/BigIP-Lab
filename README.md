@@ -23,6 +23,7 @@ Note that the CloudFormation templates were tested with Big-IP version 15.1.2.1 
 
 This CloudFormation template is designed for building Demo/Testing environment only.
 It was NOT designed to be used for Live/Commercial environment !!!
+This CloudFormation Template is developed by individual and is NOT supported by F5 Networks.
 
 Read through the input parameters descriptions below to understand what the CloudFormation template creates and does.
 Some further references are provided on the description of each parameter field.
