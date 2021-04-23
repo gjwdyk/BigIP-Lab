@@ -1,0 +1,30 @@
+#!/bin/bash -ex
+
+AWS_File=/etc/iproute2/rt_tables.archive
+My_File=/etc/iproute2/vmimport.rt_tables
+Operate_File=/etc/iproute2/rt_tables
+Flag_File=/etc/iproute2/rt_tables.corrected
+Log_File=~/VMImportCompensate.log
+Log_Indicator=RT
+
+if [ -f "$Flag_File" ]; then
+  sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $Flag_File exist." >> "$Log_File"
+else
+  sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $Flag_File does NOT exist. Start correction." >> "$Log_File"
+  if [ -f "$My_File" ]; then
+    sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $My_File exist." >> "$Log_File"
+    if [ -f "$Operate_File" ]; then
+      sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $Operate_File exist. Remove $Operate_File ." >> "$Log_File"
+      sudo cp "$Operate_File" "$AWS_File"
+      sudo rm -f "$Operate_File"
+    else
+      sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $Operate_File does NOT exist." >> "$Log_File"
+    fi
+    sudo cp "$My_File" "$Operate_File"
+    sudo touch "$Flag_File"
+    sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $Operate_File is corrected. Reboot." >> "$Log_File"
+    sudo reboot
+  else
+    sudo echo "$1 `date +%Y%m%d%H%M%S` $Log_Indicator $My_File does NOT exist. Can NOT perform correction." >> "$Log_File"
+  fi
+fi

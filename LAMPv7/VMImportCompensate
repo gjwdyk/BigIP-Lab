@@ -1,0 +1,4 @@
+#!/bin/bash -ex
+
+sudo /bin/bash /etc/network/VMImportCompensateIF cron.hourly
+sudo /bin/bash /etc/iproute2/VMImportCompensateRT cron.hourly

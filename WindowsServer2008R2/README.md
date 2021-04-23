@@ -12,6 +12,12 @@ Add one additional network interface for management with IP Address : `10.1.1.25
 
 
 
+### Change Passwords
+
+Modify system's configuration to require password to access the Windows Server; and change password of the users (may need to changed also the password of users on the Active Directory entry; i.e. for APM exercise).
+
+
+
 ### Fix the networking part which AWS messed up during VM Import process
 
 Create a batch file to fix the networking, refer to [FixNetwork.bat](FixNetwork.bat); with content as below :

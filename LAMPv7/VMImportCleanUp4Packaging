@@ -1,0 +1,8 @@
+#!/bin/bash -ex
+
+sudo rm -f /etc/network/interfaces.corrected
+sudo rm -f /etc/iproute2/rt_tables.corrected
+sudo rm -f ~/VMImportCompensate.log*
+sudo rm -f /etc/network/interfaces.archive
+sudo rm -f /etc/iproute2/rt_tables.archive
+sudo shutdown -h now

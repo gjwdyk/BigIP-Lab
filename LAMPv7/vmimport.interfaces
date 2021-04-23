@@ -1,0 +1,93 @@
+# The loopback network interface
+
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+
+auto eth0
+iface eth0 inet static
+  address 10.1.1.252
+  netmask 255.255.255.0
+  network 10.1.1.0
+  broadcast 10.1.1.255
+  post-up ip route add 10.1.1.0/24 dev eth0 src 10.1.1.252 table rt2
+  post-up ip route add default via 10.1.1.1 dev eth0 table rt2
+  post-up ip rule add from 10.1.1.252/32 table rt2
+  post-up ip rule add to 10.1.1.252/32 table rt2
+  dns-nameservers 8.8.4.4
+
+auto eth1
+iface eth1 inet static
+  address 10.1.20.252
+  netmask 255.255.255.0
+  network 10.1.20.0
+  gateway 10.1.20.241
+  dns-nameservers 8.8.8.8
+  broadcast 10.1.20.255
+auto eth1:1
+iface eth1:1 inet static
+  address 10.1.20.16
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:2
+iface eth1:2 inet static
+  address 10.1.20.17
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:3
+iface eth1:3 inet static
+  address 10.1.20.18
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:4
+iface eth1:4 inet static
+  address 10.1.20.19
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:5
+iface eth1:5 inet static
+  address 10.1.20.20
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:6
+iface eth1:6 inet static
+  address 10.1.20.11
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:7
+iface eth1:7 inet static
+  address 10.1.20.12
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:8
+iface eth1:8 inet static
+  address 10.1.20.13
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:9
+iface eth1:9 inet static
+  address 10.1.20.14
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:10
+iface eth1:10 inet static
+  address 10.1.20.15
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
+auto eth1:11
+iface eth1:11 inet static
+  address 10.1.20.50
+  netmask 255.255.255.0
+  network 10.1.20.0
+  broadcast 10.1.20.255
