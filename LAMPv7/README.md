@@ -2,7 +2,7 @@
 
 Below are steps taken to adapt the **_LAMP_v7.zip_** from **_vLab_** section under https://downloads.f5.com/   .
 
-[LAMPv7 Notes](LAMPv7%20Notes.txt) may enable more comfortable reading of the steps/changes done to the LAMPv7 server during the adaptation process.
+[LAMPv7 Notes](LAMPv7%20Notes.txt) (then select to read the 'Raw' format) may enable more comfortable reading of the steps/changes done to the LAMPv7 server during the adaptation process.
 
 
 
