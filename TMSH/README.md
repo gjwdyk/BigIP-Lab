@@ -1,5 +1,7 @@
 # TMSH Configuration Samples
 
+This folder contains only **samples** of how Big-IP can be configured using TMSH Utility. Refer to [TMSH Home](https://clouddocs.f5.com/api/tmsh/) or [F5 TMSH Reference](https://clouddocs.f5.com/cli/tmsh-reference/latest/) for further details on TMSH Commands.
+
 
 
 ## Virtual Servers redirection from HTTP to HTTPS, SSL-OffLoad, HTTP/TCP Analytics Profile, IP Reputation, GeoLocation Filtering, DDoS Protection
