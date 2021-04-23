@@ -20,7 +20,7 @@ The diagram below depicts the Logical Configuration Diagram built by [F5_Configu
 - [ ] Filtering out DDoS traffic
 - [ ] Filtering out all traffic except the ones coming from: Cambodia, Indonesia, Laos, Myanmar, Pakistan and Singapore
 
-TMSH Commands configures only the stuffs inside Big-IP (refer to the diagram above).
+TMSH Commands configure only the stuffs inside Big-IP (refer to the diagram above).
 Anything outside Big-IP shall be configured by AWS CloudFormation ; or if you use this TMSH Commands in VE or Hardware; the things outside Big-IP shall be configured separately, either manually or by other scripts or some external orchestrator node.
 
 
