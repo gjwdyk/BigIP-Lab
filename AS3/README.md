@@ -6,8 +6,8 @@
 
 
 
-The diagram below depicts the Logical Configuration Diagram built by this AS3 Declaration.
-![Logical Configuration Diagram inside Big-IP](AS3_LTM_SSLoL_AVR_NOutB.png)
+The diagram below depicts the Logical Configuration Diagram built by [AS3_LTM_SSLoL_AVR_NOutB.json](AS3_LTM_SSLoL_AVR_NOutB.json) AS3 Declaration.
+![Logical Configuration Diagram](AS3_LTM_SSLoL_AVR_NOutB.png)
 
 HTTPS Virtual Servers are attached with both HTTP and TCP Analytics Profiles. TCP Virtual Servers are attached with TCP Analytics Profile.
 
