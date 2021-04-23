@@ -9,6 +9,8 @@
 
 Derived from **_Windows_Server_2008_v2.zip_**, from **_vLab_** section under https://downloads.f5.com/   .
 
+Some of the images in the notes are high resolution images. Just click the image to show the image in separate tab, or right-click the image and select "Open image in new tab" to have better view of the image.
+
 
 
 ### Add Management Interface
@@ -75,7 +77,7 @@ Reference :
 
 - **Action** : **Start a program**
 - **Program/script** : **FixNetwork.bat**
-- **Start in** (optional) : <strong> C:\Users\Administrator\Desktop\ </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (This is such a typical Microsoft lie, this field is NOT optional; input the folder where your batch file is located)
+- **Start in** (optional) : <strong> C:\Users\Administrator\Desktop\ </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (This field is NOT optional; input the folder where your batch file is located)
 - Leave "Add arguments (optional)" field empty
 
 Reference :
@@ -130,7 +132,7 @@ Reference :
 
 ### Time Zone Setting
 
-Change the Time Zone into : `(UTC +08:00) Kuala Lumpur, Singapore` .
+Change the Time Zone into : `(UTC +08:00) Kuala Lumpur, Singapore` . &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Or any other Time Zone)
 
 ![Time Zone Settings](Figures/TimeZoneSettings.png)
 
