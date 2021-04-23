@@ -1,8 +1,12 @@
 # AS3 Configuration Samples
 
+This folder contains only **samples** of how Big-IP can be configured using a JSON declaration via REST API. Refer to [Application Services 3 Extension Documentation](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/) for further details on how to build AS3 Declaration.
 
 
-# AS3 for LTM with HTTP redirected to HTTPS, and SSL-OffLoad
+
+***
+
+## AS3 for LTM with HTTP redirected to HTTPS, and SSL-OffLoad
 
 The diagram below depicts the Logical Configuration Diagram built by [AS3_LTM_SSLOffLoad.json](AS3_LTM_SSLOffLoad.json) AS3 Declaration.
 ![Logical Configuration Diagram](AS3_LTM_SSLOffLoad.png)
