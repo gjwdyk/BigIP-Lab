@@ -1,6 +1,8 @@
 # Windows Server 2008 R2 adaptation to AWS
 
 Below are the steps taken to adapt the **_Windows_Server_2008_v2.zip_** from **_vLab_** section under https://downloads.f5.com/   .
+Note that this is just **one sample** on how to adapt the LAMPv7 Server to AWS Environment.
+Many other ways are available and most probably provide better results.
 
 Some of the images in the notes are high resolution images. Just click the image to show the image in separate tab, or right-click the image and select "Open image in new tab" to have better view of the image.
 

@@ -1,6 +1,8 @@
 # LAMPv7 Adaptation to AWS
 
 Below are steps taken to adapt the **_LAMP_v7.zip_** from **_vLab_** section under https://downloads.f5.com/   .
+Note that this is just **one sample** on how to adapt the LAMPv7 Server to AWS Environment.
+Many other ways are available and most probably provide better results.
 
 [LAMPv7 Notes](LAMPv7%20Notes.txt) (then select to read the 'Raw' format) may enable more comfortable reading of the steps/changes done to the LAMPv7 server during the adaptation process.
 
