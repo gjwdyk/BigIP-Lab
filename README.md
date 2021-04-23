@@ -77,26 +77,16 @@ The CloudFormation template were designed to require as little possible input fr
 
 
 
+***
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br><br>
+```
+╔═╦═════════════════╦═╗
+╠═╬═════════════════╬═╣
+║ ║ End of Document ║ ║
+╠═╬═════════════════╬═╣
+╚═╩═════════════════╩═╝
+```
+<br><br><br>
 
 
