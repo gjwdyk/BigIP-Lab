@@ -1,13 +1,6 @@
 # Windows Server 2008 R2 adaptation to AWS
 
-
-
-
-
-
-
-
-Derived from **_Windows_Server_2008_v2.zip_**, from **_vLab_** section under https://downloads.f5.com/   .
+Below are the steps taken to adapt the **_Windows_Server_2008_v2.zip_** from **_vLab_** section under https://downloads.f5.com/   .
 
 Some of the images in the notes are high resolution images. Just click the image to show the image in separate tab, or right-click the image and select "Open image in new tab" to have better view of the image.
 
