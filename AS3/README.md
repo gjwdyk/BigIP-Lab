@@ -2,6 +2,10 @@
 
 This folder contains only **samples** of how Big-IP can be configured using a JSON declaration via REST API. Refer to [Application Services 3 Extension Documentation](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/) for further details on how to build AS3 Declaration.
 
+This folder contains 2 files for each sample AS3 Declaration: one with ending `.json` and the other with ending `_Original.json`.
+The file ending with `_Original.json` is where the codes are actually developed, where the formatting of the code writing is not always consistent.
+The file ending with `.json` is where the final code were fed into some ironing, and the output formatting of the code is neat and consistent, and for some people easier to read.
+
 
 
 ***
