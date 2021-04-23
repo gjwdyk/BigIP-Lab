@@ -506,7 +506,7 @@ Change TimeZone through the GUI, to: Asia/Singapore .         --------->>>>>>>>>
 ║ ║                     ║ ║
 ╚═╩═════════════════════╩═╝
 
-sudo passwd root         --------->>>>>>>>> There may be other user(s) which needs to be secured.
+sudo passwd root         --------->>>>>>>>> There may be other user(s) which need(s) to be secured.
 
 
 
