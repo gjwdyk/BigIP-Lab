@@ -2,6 +2,8 @@
 
 Some of the images in the notes are high resolution images. Just click the image to show the image in separate tab, or right-click the image and select "Open image in new tab" to have better view of the image.
 
+Use Big-IP Configuration Utility, go to : System » Certificate Management » Traffic Certificate Management » SSL Certificate List, and create new SSL Certificate.
+
 ![20190312CreateSelfSignedCertificate.png](20190312CreateSelfSignedCertificate.png)
 
 Important fields are filled as above, with example of wild-card domain name and the longest possible Lifetime value:
