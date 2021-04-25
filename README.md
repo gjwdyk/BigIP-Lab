@@ -7,6 +7,9 @@ The target goal of this repository is to automate the creation of F5 Lab environ
 The diagram below depicts the Logical Network Diagram built by the CloudFormation templates in this repository.
 ![Logical Network Diagram](Figures/LogicalNetworkDiagram.png)
 
+The CloudFormation template will create every resources needed, starts from the VPC, Subnets, Routers, Internet Gateway, NACL, Security Gateways, Network Interfaces, Public IP Addresses, Compute needed for the Servers and Big-IP, et cetera.
+To make it easier for users to launch the CloudFormation, a lot of the input parameters have default values, which users who don't know what/how to fill in the input parameters can simply use the default values.
+
 At the moment, the default values in this CloudFormation templates were designed to work in only in AWS Region Tokyo, Seoul and Singapore (`ap-northeast-1`, `ap-northeast-2` and `ap-southeast-1`).
 The reason of that is because the adapted LAMPv7 and Windows Server 2008 R2 VMs are only imported to AWS Region Tokyo, Seoul and Singapore; so the adapted LAMPv7 and Windows Server 2008 R2 AMIs exist only in those AWS Regions.
 To make the template works in any other AWS Regions, the adapted LAMPv7 and Windows Server 2008 R2 AMIs must exist in the targeted region and be accessible by the targeted account, before the execution of the template.
