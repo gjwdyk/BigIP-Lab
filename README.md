@@ -15,7 +15,7 @@ The reason of that is because the adapted LAMPv7 and Windows Server 2008 R2 VMs 
 To make the template works in any other AWS Regions, the adapted LAMPv7 and Windows Server 2008 R2 AMIs must exist in the targeted region and be accessible by the targeted account, before the execution of the template.
 Which can be achieved by re-importing the adapted LAMPv7 and Windows Server 2008 R2 VMs, or by copying the adapted LAMPv7 and Windows Server 2008 R2 AMIs in Tokyo, Seoul or Singapore to the targeted other AWS Region.
 Once the adapted LAMPv7 and Windows Server 2008 R2 AMIs exist in the targeted AWS Region, the AMI ID of the adapted LAMPv7 and Windows Server 2008 R2 need to be indicated properly (i.e. not using the default value) during execution of the template.
-Refer to [LAMPv7](LAMPv7\/) and [WindowsServer2008R2](WindowsServer2008R2\/) for sample procedure(s) to adapt the servers to AWS Environment.
+Refer to [LAMPv7](LAMPv7\/) and [WindowsServer2008R2](WindowsServer2008R2\/) for sample procedures to adapt the servers to AWS Environment; in case users need to make own adaptation to the servers used in this CloudFormation.
 
 The Big-IP AMI should be available in most (if not ALL) of AWS Regions as part of F5 Networks effort to commercialized usage of the product in AWS.
 Only the correct AMI ID of Big-IP within the targeted AWS Region is needed, which should not be difficult to find.
