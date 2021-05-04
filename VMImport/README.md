@@ -181,7 +181,7 @@ C:\>aws --profile userid ec2 import-image --description "Description of the Impo
 C:\>
 ```
 
-From the above example, take notes of the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` on the above example.
+From the above example, take note of the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` on the above example.
 
 Importing VM image into AMI takes quite some time, and to check the status of import process we will need the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` from the example above.
 
