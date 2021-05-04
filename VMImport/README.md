@@ -129,29 +129,107 @@ The `containers.json` file is pretty dynamic and needs to be modified everytime 
 
 ***
 
-Use [AWS Command Line Interface](https://aws.amazon.com/cli/) to issue the following commands to AWS.
+Use [AWS Command Line Interface](https://aws.amazon.com/cli/) to issue the below commands to AWS.
+
+Further reference on [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) :
+- [ ] [Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+- [ ] [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+- [ ] [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+
 Depending on how you do [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) of your AWS CLI, the `--profile userid` part may not be needed in your case.
 
 `aws --profile userid iam create-role --role-name vmimport --assume-role-policy-document "file://D:\Path\to\File\trust-policy.json"`
 
 `aws --profile userid iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document "file://D:\Path\to\File\role-policy.json"`
 
-The two commands above create an IAM Role called `vmimport` and assign role policy to it.
+The two commands above create an IAM Role called `vmimport` and assign role policy to it. Reference: [Required service role](https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role).
+
+
 
 Then copy the VM image `.ova` file to the AWS S3 import bucket.
 
 `aws --profile userid s3 cp "D:\Path\to\File\ImageFileName.ova" "s3://aws-s3-vmimport-bucket/"`
 
+
+
 Lastly, import the VM image `.ova` file from AWS S3 import bucket to become AWS' Amazon Machine Image (AMI) :
 
 `aws --profile userid ec2 import-image --description "Description of the Imported VM Image" --disk-containers "file://D:\Path\to\File\containers.json"`
 
+Example:
+
+```
+C:\>aws --profile userid ec2 import-image --description "Description of the Imported VM Image" --disk-containers "file://D:\Path\to\File\containers.json"
+{
+    "Description": "Description of the Imported VM Image",
+    "ImportTaskId": "import-ami-0123456789abcdef0",
+    "Progress": "2",
+    "SnapshotDetails": [
+        {
+            "DiskImageSize": 0.0,
+            "Format": "OVA",
+            "UserBucket": {
+                "S3Bucket": "aws-s3-vmimport-bucket",
+                "S3Key": "ImageFileName.ova"
+            }
+        }
+    ],
+    "Status": "active",
+    "StatusMessage": "pending"
+}
+
+C:\>
+```
+
+From the above example, take notes of the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` on the above example.
+
+Importing VM image into AMI takes quite some time, and to check the status of import process :
+
+`aws --profile userid ec2 describe-import-image-tasks --import-task-ids import-ami-0123456789abcdef0`
+
+Example :
+
+```
+C:\>aws --profile userid ec2 describe-import-image-tasks --import-task-ids import-ami-0123456789abcdef0
+{
+    "ImportImageTasks": [
+        {
+            "Architecture": "i386",
+            "Description": "Description of the Imported VM Image",
+            "ImageId": "ami-0123456789abcdef0",
+            "ImportTaskId": "import-ami-0123456789abcdef0",
+            "LicenseType": "BYOL",
+            "Platform": "Linux",
+            "SnapshotDetails": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "DiskImageSize": 1234567890.0,
+                    "Format": "VMDK",
+                    "SnapshotId": "snap-0123456789abcdef0",
+                    "Status": "completed",
+                    "UserBucket": {
+                        "S3Bucket": "aws-s3-vmimport-bucket",
+                        "S3Key": "ImageFileName.ova"
+                    }
+                }
+            ],
+            "Status": "completed"
+        }
+    ]
+}
+
+C:\>
+```
 
 
-Further reference on [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) :
-- [ ] [Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-- [ ] [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-- [ ] [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+
+
+
+
+
+
+
+
 
 
 
