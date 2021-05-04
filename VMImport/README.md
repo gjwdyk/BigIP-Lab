@@ -146,6 +146,28 @@ The `role-policy.json` file is pretty static i.e. does not need to change from i
 
 `containers.json` file at local storage :
 
+```
+[
+  {
+    "Description": "Description of the Imported VM Image",
+    "Format": "ova",
+    "UserBucket": {
+        "S3Bucket": "aws-s3-vmimport-bucket",
+        "S3Key": "ImageFileName.ova"
+    }
+  }
+]
+```
+
+You need to change the AWS S3 bucket name, i.e. the `S3Bucket` value (`aws-s3-vmimport-bucket` on the example above), to your own import bucket name.
+
+Replace the image file name, i.e. the `S3Key` value (`ImageFileName.ova` on the example above), with the actual image file name in the AWS S3 import bucket (after you copied the `.ova` file to AWS S3 import bucket).
+
+Also replace the `Description` value to something representative. When there are multiple users in an AWS account, imported image can quicky lost amongst many other imported images, and `Description` field can help to differentiate one to the other images.
+
+The `containers.json` file is pretty dynamic and needs to be modified everytime you imported different VM image into AWS i.e. the `containers.json` file is specific per imported image.
+
+***
 
 
 
