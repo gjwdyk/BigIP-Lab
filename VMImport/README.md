@@ -129,11 +129,26 @@ The `containers.json` file is pretty dynamic and needs to be modified everytime 
 
 ***
 
+Use [AWS Command Line Interface](https://aws.amazon.com/cli/) to issue the following commands to AWS.
+Depending on how you do [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) of your AWS CLI, the `--profile userid` part may not be needed in your case.
+
 `aws --profile userid iam create-role --role-name vmimport --assume-role-policy-document "file://D:\Path\to\File\trust-policy.json"`
 
 `aws --profile userid iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document "file://D:\Path\to\File\role-policy.json"`
 
+The two commands above create an IAM Role called `vmimport` and assign role policy to it.
+
+
+
 `aws --profile userid s3 cp "D:\Path\to\File\ImageFileName.ova" "s3://aws-s3-vmimport-bucket/"`
+
+`aws --profile userid ec2 import-image --description "Description of the Imported VM Image" --disk-containers "file://D:\Path\to\File\containers.json"`
+
+
+
+Further reference on [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
+
+
 
 
 
