@@ -141,6 +141,12 @@ Change the Time Zone into : `(UTC +08:00) Kuala Lumpur, Singapore` . &nbsp;&nbsp
 
 ***
 
+After the Windows Server 2008 R2 VM had been adapted, then import the VM into AWS following instructions on [Importing a VM as an image using VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html).
+
+
+
+***
+
 <br><br><br>
 ```
 ╔═╦═════════════════╦═╗

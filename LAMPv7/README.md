@@ -552,7 +552,9 @@ After the LAMPv7 VM had been adapted, then import the VM into AWS following inst
 
 
 
+***
 
+<br><br><br>
 ```
 ╔═╦═════════════════╦═╗
 ╠═╬═════════════════╬═╣
@@ -560,5 +562,6 @@ After the LAMPv7 VM had been adapted, then import the VM into AWS following inst
 ╠═╬═════════════════╬═╣
 ╚═╩═════════════════╩═╝
 ```
+<br><br><br>
 
 
