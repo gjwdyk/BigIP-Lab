@@ -183,7 +183,7 @@ C:\>
 
 From the above example, take notes of the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` on the above example.
 
-Importing VM image into AMI takes quite some time, and to check the status of import process :
+Importing VM image into AMI takes quite some time, and to check the status of import process we will need the `ImportTaskId` value i.e. `import-ami-0123456789abcdef0` from the example above.
 
 `aws --profile userid ec2 describe-import-image-tasks --import-task-ids import-ami-0123456789abcdef0`
 
@@ -221,15 +221,9 @@ C:\>aws --profile userid ec2 describe-import-image-tasks --import-task-ids impor
 C:\>
 ```
 
+The import process is completed when BOTH `Status` fields above has value `completed`.
 
-
-
-
-
-
-
-
-
+Take note the `ImageId` from the completed VM import process, i.e. `ami-0123456789abcdef0` from the example above, as this is the end result AMI ID you will use to launch a new instance of the imported VM image in the AWS Environment.
 
 
 
