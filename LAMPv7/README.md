@@ -535,8 +535,18 @@ root@xubuntu-vm:/# ls -lap /etc/x11vnc.pass
 -rw------- 1 root root 8 Apr 19 00:15 /etc/x11vnc.pass
 root@xubuntu-vm:/# reboot
 
+```
+
+***
 
 
+
+After the LAMPv7 VM had been adapted, then import the VM into AWS following instructions on [Importing a VM as an image using VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html).
+
+
+
+
+```
 ╔═╦═════════════════╦═╗
 ║ ║                 ║ ║
 ╠═╬═════════════════╬═╣
