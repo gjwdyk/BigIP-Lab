@@ -138,17 +138,20 @@ Depending on how you do [Configuration and credential file settings](https://doc
 
 The two commands above create an IAM Role called `vmimport` and assign role policy to it.
 
-
+Then copy the VM image `.ova` file to the AWS S3 import bucket.
 
 `aws --profile userid s3 cp "D:\Path\to\File\ImageFileName.ova" "s3://aws-s3-vmimport-bucket/"`
+
+Lastly, import the VM image `.ova` file from AWS S3 import bucket to become AWS' Amazon Machine Image (AMI) :
 
 `aws --profile userid ec2 import-image --description "Description of the Imported VM Image" --disk-containers "file://D:\Path\to\File\containers.json"`
 
 
 
-Further reference on [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
-
-
+Further reference on [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) :
+- [ ] [Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+- [ ] [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+- [ ] [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 
 
 
