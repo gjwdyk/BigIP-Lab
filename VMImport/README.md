@@ -2,6 +2,8 @@
 
 This section does not intent to provide full guide of importing VM into AWS, which can be referred at [Importing a VM as an image using VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html), but only to supply additional information and/or samples not covered at the reference.
 
+***
+
 As per stated in the [Importing a VM as an image using VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html) reference, importing VM image to AWS requires Open Virtualization Archive (OVA) format.
 
 If you are using VMware WorkStation (especially version 15 or later), this can be achieved by `Export to OVF...` menu.
@@ -12,9 +14,77 @@ Then simply input proper file name and ***change*** the extension from `.ovf` to
 
 ![VMwareWorkStation-ExportToOVF-FileNameExtension.png](VMwareWorkStation-ExportToOVF-FileNameExtension.png)
 
+***
 
+`vmimport` role's inline policy at AWS IAM :
 
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-s3-vmimport-bucket",
+                "arn:aws:s3:::aws-s3-vmimport-bucket/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:GetBucketAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-s3-vmexport-bucket",
+                "arn:aws:s3:::aws-s3-vmexport-bucket/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:ModifySnapshotAttribute",
+                "ec2:CopySnapshot",
+                "ec2:RegisterImage",
+                "ec2:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 
+***
+
+`trust-policy.json` file at local storage :
+
+```
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Principal": { "Service": "vmie.amazonaws.com" },
+         "Action": "sts:AssumeRole",
+         "Condition": {
+            "StringEquals":{
+               "sts:Externalid": "vmimport"
+            }
+         }
+      }
+   ]
+}
+```
+
+***
 
 
 
