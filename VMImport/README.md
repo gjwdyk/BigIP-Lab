@@ -146,13 +146,17 @@ The two commands above create an IAM Role called `vmimport` and assign role poli
 
 The User ID `userid` used to issue the commands MUST have permission / authorized to create the `vmimport` role.
 
-<br><br><br>
+<br><br>
+
+
 
 Then copy the VM image `.ova` file to the AWS S3 import bucket.
 
 `aws --profile userid s3 cp "D:\Path\to\File\ImageFileName.ova" "s3://aws-s3-vmimport-bucket/"`
 
-<br><br><br>
+<br><br>
+
+
 
 Lastly, import the VM image `.ova` file from AWS S3 import bucket to become AWS' Amazon Machine Image (AMI) :
 
