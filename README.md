@@ -86,7 +86,7 @@ The CloudFormation template were designed to require as little possible input fr
 
 ### The Code, Information, Service or Content are Available "AS-IS"
 
-Your access to and use of the Code, Information, Service or any Content are at your own risk.
+Your access to and use of the Code, Information, Service or any Content in this GitHub repositories are at your own risk.
 You understand and agree that the Code, Information, Service or any Content are provided to you on an “AS IS” and “AS AVAILABLE” basis.
 The creator of this GitHub repositories (gjwdyk) refers to gjwdyk, parents, children, relatives, friends, acquaintances, affiliates, related companies, any officer of the related companies, coworkers, supervisors, representatives, partners, et cetera (basically anyone and/or any institution who/which has/have any degree of knowledge of gjwdyk, including zero knowledge of gjwdyk).
 THE CREATOR OF THIS GITHUB REPOSITORIES (GJWDYK) DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
