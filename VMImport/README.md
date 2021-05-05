@@ -231,6 +231,8 @@ The import process is completed when BOTH `Status` fields above has value `compl
 
 Take note the `ImageId` from the completed VM import process, i.e. `ami-0123456789abcdef0` from the example above, as this is the end result AMI ID you will use to launch a new instance of the imported VM image in the AWS Environment.
 
+The import process also creates a SnapShot object. Take note at the `SnapshotId` value, i.e. `snap-0123456789abcdef0` from the example above, to look for the created SnapShot of the imported VM image.
+
 
 
 ***
