@@ -123,7 +123,7 @@ Replace the image file name, i.e. the `S3Key` value (`ImageFileName.ova` on the 
 
 Also replace the `Description` value to something representative. When there are multiple users in an AWS account, imported image can quicky lost amongst many other images (in form of SnapShots and AMIs), and `Description` field can help to differentiate one to the other images.
 
-The `containers.json` file is pretty dynamic and needs to be modified everytime you imported different VM image into AWS i.e. the `containers.json` file is specific per imported image.
+The `containers.json` file is pretty dynamic and needs to be modified everytime you import different VM image into AWS i.e. the `containers.json` file is specific per imported image.
 
 
 
