@@ -110,8 +110,8 @@ The `role-policy.json` file is pretty static i.e. does not need to change from i
     "Description": "Description of the Imported VM Image",
     "Format": "ova",
     "UserBucket": {
-        "S3Bucket": "aws-s3-vmimport-bucket",
-        "S3Key": "ImageFileName.ova"
+      "S3Bucket": "aws-s3-vmimport-bucket",
+      "S3Key": "ImageFileName.ova"
     }
   }
 ]
